@@ -66,6 +66,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);pad
 .intv:last-child{border-bottom:none;padding-bottom:0}
 .intv-label{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:3px}
 .intv-text{font-size:13px;color:var(--text)}
+.intv-empty{color:var(--text3);font-style:italic}
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .prole{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold-d)}
 .pname{font-size:12px;margin-top:2px}
@@ -362,37 +363,50 @@ function getPwd() { return DB.get('pwd') || 'bastille'; }
 // ── SEED DATA ──
 const SEED_OPERAS = [
   {
-    id:'romeo', nom:'Roméo & Juliette', type:'Ballet', comp:'S. Prokofiev', saison:'2025-2026', schemaKey:'romeo',
-    equipe:{'Rég. Production':'—','Machinerie':'—','Habillement':'—','Dispo Scénique':'—'},
-    soiree:{parties:['Partie 1','Partie 2','Partie 3'],debut:['19h30','20h55','21h45'],fin:['20h35','21h25','22h35'],entractes:[20,20,'—'],total:'—'},
-    apresMidi:{parties:['Partie 1','Partie 2','Partie 3'],debut:['14h30','15h55','16h45'],fin:['15h35','16h25','17h35'],entractes:[20,20,'—'],total:'—'},
+    id:'bayadere', nom:'Bayadère', type:'Ballet en quatre actes', comp:'L. Minkus', saison:'2025-2026',
+    soiree:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['19h30','20h30','21h35'],
+      fin:['20h20','21h25','22h15'],
+      entractes:[20,20,'—'],
+      total:'2h45'
+    },
     interventions:[
-      {label:'Mise en place',texte:'Faire les loges. Laver les linots plateau + cour et jardin.'},
-      {label:'Entractes',texte:'Coup de balais blanc.'},
+      {label:'Mise', texte:'—'},
+      {label:'Entractes', texte:'Coup de balai. 2ᵉ entracte : enlever les taches dorées de maquillage au chiffon sur le lino.'},
+      {label:'Fin du spectacle', texte:'—'}
+    ],
+    loges:[
+      {zone:'couloir-jardin', chaises:6},
+      {zone:'couloir-jardin', chaises:6},
+      {zone:'face-cour', chaises:4},
+      {zone:'face-cour', chaises:4},
+      {zone:'face-cour', chaises:3},
+      {zone:'asc-jardin', chaises:2}
     ],
   },
   {
-    id:'rusalka2', nom:'Rusalka', type:"Opéra en trois actes", comp:'A. Dvořák', saison:'2024-2025', schemaKey:'rusalka',
-    equipe:{'Rég. Production':'Erwan','Machinerie':'Patrick','Resp. Dispo Scénique':'Mansiot Denis'},
+    id:'traviata', nom:'La Traviata', type:'Opéra en trois actes', comp:'G. Verdi', saison:'2025-2026',
     soiree:{
-      parties:['Partie 1','Partie 2a','Partie 2b','Partie 3'],
-      debut:['19h30','20h07','21h05','22h10'],
-      fin:['20h05','20h30','21h50','23h05'],
-      entractes:[35,'—',20,'—'],
-      total:'3h35'
-    },
-    apresMidi:{
-      parties:['Partie 1','Partie 2a','Partie 2b','Partie 3'],
-      debut:['14h30','15h07','16h05','17h10'],
-      fin:['15h05','15h30','16h50','18h05'],
-      entractes:[35,'—',20,'—'],
-      total:'3h20'
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['19h30','20h30','22h00'],
+      fin:['20h00','21h35','22h35'],
+      entractes:[30,25,'—'],
+      total:'3h05'
     },
     interventions:[
-      {label:'Mise en place', texte:"Aspirer toutes les moquettes. Laver PO4 (lavette). Voir 0 : si la piscine fuit mettre des serpillères, coup de balai si besoin. ⚠️ Ne pas trop s'approcher de l'eau quand on aspire, pyrotechnie ⚠️"},
-      {label:'1er entracte', texte:"Essuyer l'eau, nettoyer les linos de côtés une fois les chambres retirées (vérifier 0 si ça fuit)."},
+      {label:'Mise', texte:'Mettre un coup au sol.'},
+      {label:'Entractes', texte:'—'},
+      {label:'Fin du spectacle', texte:'—'}
     ],
-    notes:'1 loge Cour Lointain — 3 chaises — 3 paravents.',
+    loges:[
+      {zone:'lointain-jardin', chaises:12},
+      {zone:'lointain-jardin', chaises:12},
+      {zone:'couloir-cour', chaises:6},
+      {zone:'couloir-cour', chaises:2},
+      {zone:'couloir-cour', chaises:2},
+      {zone:'asc-cour', chaises:3}
+    ],
   },
 ];
 
@@ -665,106 +679,119 @@ function renderConduites() {
 function showDetail(id) {
   const op = getOperas().find(o => o.id === id);
   if (!op) return;
-  const schema = op.schemaKey ? SCHEMAS[op.schemaKey] : (DB.get('schema_'+id) || null);
-  const n = op.soiree.parties.length;
 
   document.getElementById('detail-content').innerHTML = `
-    <div class="detail-title">${op.nom}</div>
-    <div class="detail-meta">${op.type} · ${op.comp} · ${op.saison}</div>
     <div class="ib">
-      <div class="ib-title">Équipe de production</div>
-      <div class="pgrid">
-        ${Object.entries(op.equipe).map(([r,v])=>`<div><div class="prole">${r}</div><div class="pname">${v}</div></div>`).join('')}
-      </div>
+      <div class="ib-title">Horaires soirée</div>
+      ${renderHoraires(op.soiree)}
     </div>
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab(this,'tp-h')">Horaires</button>
-      <button class="tab" onclick="switchTab(this,'tp-i')">Interventions</button>
-      <button class="tab" onclick="switchTab(this,'tp-l')">Loges</button>
+    <div class="ib">
+      <div class="ib-title">Interventions</div>
+      ${(op.interventions||[]).map(i=>`<div class="intv"><div class="intv-label">${i.label}</div><div class="intv-text${i.texte==='—'?' intv-empty':''}">${i.texte||'—'}</div></div>`).join('')}
     </div>
-    <div id="tp-h" class="tab-pane active">
-      <div class="ib"><div class="ib-title">🌙 Soirée</div>${renderHoraires(op.soiree)}</div>
-      <div class="ib"><div class="ib-title">☀️ Après-midi</div>${renderHoraires(op.apresMidi)}</div>
-    </div>
-    <div id="tp-i" class="tab-pane">
-      <div class="ib">
-        <div class="ib-title">Pendant le jeu</div>
-        ${op.interventions.map(i=>`<div class="intv"><div class="intv-label">${i.label}</div><div class="intv-text">${i.texte||'—'}</div></div>`).join('')}
-      </div>
-    </div>
-    <div id="tp-l" class="tab-pane">
-      ${op.schemaKey ? `
-        <div class="ib">
-          <div class="ib-title">Schéma de placement</div>
-          <div style="background:var(--bg4);border-radius:10px;padding:16px">${renderLogesSchema(op)}</div>
-          ${op.loges && op.loges.length ? `<div style="margin-top:12px">
-            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px">Détails</div>
-            ${op.loges.map(l=>`<div style="font-size:12px;color:var(--text);padding:4px 0;border-bottom:1px solid rgba(201,168,76,.08)">
-              <strong style="color:var(--gold-l)">${l.zone} ${l.position||''}</strong> — ${l.nb} loge${l.nb>1?'s':''}, ${l.chaises} chaise${l.chaises>1?'s':''}, ${l.paravents} paravent${l.paravents>1?'s':''}
-            </div>`).join('')}
-          </div>` : ''}
-          ${op.notes ? `<div style="margin-top:10px;font-size:11px;color:var(--gold-d);font-style:italic">${op.notes}</div>` : ''}
-        </div>` : `
-        <div class="ib">
-          <div style="text-align:center;padding:24px;color:var(--text3)">
-            <div style="font-size:28px;margin-bottom:8px;opacity:.4">📐</div>
-            <div>Aucun schéma disponible</div>
-          </div>
-        </div>`}
+    <div class="ib">
+      <div class="ib-title">Placement des loges</div>
+      ${renderLogesSchema(op)}
     </div>
   `;
   showScreen('detail');
-  setTimeout(() => initZoom(), 80);
   currentDetailId = id;
 }
 
 function renderLogesSchema(op) {
-  const schemas = {
-    romeo: `<svg viewBox="0 0 680 470" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-      <rect x="60" y="40" width="560" height="380" fill="none" stroke="#888780" stroke-width="2"/>
-      <line x1="246" y1="40" x2="246" y2="420" stroke="#888780" stroke-width="2"/>
-      <line x1="434" y1="40" x2="434" y2="420" stroke="#888780" stroke-width="2"/>
-      <line x1="60" y1="167" x2="620" y2="167" stroke="#888780" stroke-width="2"/>
-      <line x1="60" y1="294" x2="620" y2="294" stroke="#888780" stroke-width="2"/>
-      <rect x="60" y="320" width="55" height="55" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="87" y="354" text-anchor="middle" fill="#c9a84c" font-size="16" font-weight="500" font-family="DM Sans, sans-serif">30</text>
-      <rect x="115" y="320" width="55" height="55" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="143" y="354" text-anchor="middle" fill="#c9a84c" font-size="16" font-weight="500" font-family="DM Sans, sans-serif">30</text>
-      <rect x="170" y="338" width="37" height="37" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="189" y="362" text-anchor="middle" fill="#c9a84c" font-size="13" font-weight="500" font-family="DM Sans, sans-serif">4</text>
-      <text x="220" y="343" fill="#888780" font-size="13" font-weight="500" font-family="DM Sans, sans-serif">4</text>
-      <text x="450" y="343" fill="#888780" font-size="13" font-weight="500" font-family="DM Sans, sans-serif">6</text>
-      <rect x="473" y="338" width="37" height="37" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="492" y="362" text-anchor="middle" fill="#c9a84c" font-size="13" font-weight="500" font-family="DM Sans, sans-serif">7</text>
-      <rect x="510" y="320" width="55" height="55" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="538" y="354" text-anchor="middle" fill="#c9a84c" font-size="16" font-weight="500" font-family="DM Sans, sans-serif">30</text>
-      <rect x="565" y="320" width="55" height="55" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="593" y="354" text-anchor="middle" fill="#c9a84c" font-size="16" font-weight="500" font-family="DM Sans, sans-serif">30</text>
-      <rect x="246" y="420" width="188" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <text x="340" y="445" text-anchor="middle" fill="#888780" font-size="14" font-weight="500" font-family="DM Sans, sans-serif">4</text>
-      <text x="40" y="395" fill="#dc2626" font-size="14" font-weight="700" font-style="italic" font-family="DM Sans, sans-serif">JARDIN</text>
-      <text x="582" y="395" fill="#dc2626" font-size="14" font-weight="700" font-style="italic" font-family="DM Sans, sans-serif">COUR</text>
-    </svg>`,
-    rusalka: `<svg viewBox="0 0 680 470" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-      <rect x="60" y="40" width="560" height="380" fill="none" stroke="#888780" stroke-width="2"/>
-      <line x1="246" y1="40" x2="246" y2="420" stroke="#888780" stroke-width="2"/>
-      <line x1="434" y1="40" x2="434" y2="420" stroke="#888780" stroke-width="2"/>
-      <line x1="60" y1="167" x2="620" y2="167" stroke="#888780" stroke-width="2"/>
-      <line x1="60" y1="294" x2="620" y2="294" stroke="#888780" stroke-width="2"/>
-      <rect x="155" y="295" width="50" height="40" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" stroke-width="1.5"/>
-      <text x="180" y="320" text-anchor="middle" fill="#c9a84c" font-size="15" font-weight="500" font-family="DM Sans, sans-serif">3</text>
-      <rect x="60" y="420" width="55" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <rect x="115" y="420" width="55" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <rect x="170" y="420" width="76" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <rect x="246" y="420" width="188" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <rect x="434" y="420" width="76" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <rect x="510" y="420" width="55" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <rect x="565" y="420" width="55" height="35" fill="none" stroke="#888780" stroke-width="2"/>
-      <text x="40" y="395" fill="#dc2626" font-size="14" font-weight="700" font-style="italic" font-family="DM Sans, sans-serif">JARDIN</text>
-      <text x="582" y="395" fill="#dc2626" font-size="14" font-weight="700" font-style="italic" font-family="DM Sans, sans-serif">COUR</text>
-    </svg>`,
+  const loges = op.loges || [];
+  if (!loges.length) return '<div style="padding:20px;text-align:center;color:var(--text3);font-size:12px">Aucun placement défini</div>';
+
+  const byZone = {};
+  loges.forEach(l => { (byZone[l.zone] = byZone[l.zone] || []).push(l); });
+
+  const vZones = {
+    'couloir-jardin': {x:15,  y:108, w:22, h:55},
+    'theatre-jardin': {x:103, y:108, w:22, h:55},
+    'theatre-cour':   {x:235, y:108, w:22, h:55},
+    'couloir-cour':   {x:323, y:108, w:22, h:55},
   };
-  return schemas[op.schemaKey] || '<div style="padding:24px;text-align:center;color:var(--text3)">Schéma non disponible pour cet opéra</div>';
+  const hZones = {
+    'lointain-jardin': {x:15,  y:90,  w:110, h:14},
+    'lointain-cour':   {x:235, y:90,  w:110, h:14},
+    'face-jardin':     {x:15,  y:167, w:110, h:14},
+    'face-cour':       {x:235, y:167, w:110, h:14},
+  };
+  const ascZones = {
+    'asc-jardin': {x:85,  y:184, w:30, h:13},
+    'asc-cour':   {x:245, y:184, w:30, h:13},
+  };
+
+  const parts = [];
+  const logeRect = (x,y,w,h) => `<rect x="${x+1}" y="${y+1}" width="${w-2}" height="${h-2}" fill="rgba(201,168,76,0.28)" stroke="#c9a84c" stroke-width="1.2" rx="2"/>`;
+  const logeText = (x,y,size,val) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="${size}" font-weight="600" fill="#f0d68f" font-family="DM Sans,sans-serif">${val}</text>`;
+
+  Object.keys(vZones).forEach(zk => {
+    if (!byZone[zk]) return;
+    const z = vZones[zk], n = byZone[zk].length, h = z.h / n;
+    byZone[zk].forEach((l, i) => {
+      const y = z.y + i * h;
+      const size = h >= 22 ? 12 : (h >= 16 ? 11 : 10);
+      parts.push(logeRect(z.x, y, z.w, h));
+      parts.push(logeText(z.x + z.w/2, y + h/2 + size*0.35, size, l.chaises));
+    });
+  });
+
+  Object.keys(hZones).forEach(zk => {
+    if (!byZone[zk]) return;
+    const z = hZones[zk], n = byZone[zk].length, w = z.w / n;
+    byZone[zk].forEach((l, i) => {
+      const x = z.x + i * w;
+      const size = w >= 40 ? 11 : 10;
+      parts.push(logeRect(x, z.y, w, z.h));
+      parts.push(logeText(x + w/2, z.y + z.h/2 + size*0.35, size, l.chaises));
+    });
+  });
+
+  Object.keys(ascZones).forEach(zk => {
+    if (!byZone[zk]) return;
+    const z = ascZones[zk];
+    byZone[zk].forEach(l => {
+      parts.push(logeRect(z.x, z.y, z.w, z.h));
+      parts.push(logeText(z.x + z.w/2, z.y + z.h/2 + 3.5, 10, l.chaises));
+      parts.push(`<text x="${z.x + z.w/2}" y="${z.y + z.h + 8}" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.4)" font-family="DM Sans,sans-serif">ASC</text>`);
+    });
+  });
+
+  const zoneLabel = (zk, x, y, size, color) => byZone[zk] ? '' : `<text x="${x}" y="${y}" text-anchor="middle" font-size="${size}" fill="${color}" font-family="DM Sans,sans-serif">${zk.startsWith('couloir')?'COUL.':zk.startsWith('theatre')?'THÉÂ.':zk.startsWith('lointain')?'LOINTAIN':'FACE'}</text>`;
+
+  return `<div style="background:var(--bg4);border-radius:10px;padding:10px 8px">
+    <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <rect x="15" y="10" width="110" height="75" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
+      <text x="70" y="52" text-anchor="middle" font-size="9" fill="rgba(232,228,216,0.32)" font-family="DM Sans,sans-serif">CASE ARRIÈRE</text>
+      <rect x="235" y="10" width="110" height="75" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
+      <text x="290" y="52" text-anchor="middle" font-size="9" fill="rgba(232,228,216,0.32)" font-family="DM Sans,sans-serif">CASE ARRIÈRE</text>
+      <rect x="130" y="10" width="100" height="35" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
+      <rect x="140" y="50" width="80" height="35" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.3)" stroke-width="1" rx="3"/>
+      <text x="180" y="72" text-anchor="middle" font-size="9" font-weight="500" fill="#c9a84c" font-family="DM Sans,sans-serif">TOURNETTE</text>
+      <rect x="15" y="90" width="110" height="14" fill="rgba(90,170,106,0.08)" stroke="rgba(90,170,106,0.4)" stroke-width="1" rx="2"/>
+      ${zoneLabel('lointain-jardin', 70, 100, 9, 'rgba(90,170,106,0.6)')}
+      <rect x="235" y="90" width="110" height="14" fill="rgba(90,170,106,0.08)" stroke="rgba(90,170,106,0.4)" stroke-width="1" rx="2"/>
+      ${zoneLabel('lointain-cour', 290, 100, 9, 'rgba(90,170,106,0.6)')}
+      <rect x="15" y="108" width="22" height="55" fill="rgba(76,170,170,0.09)" stroke="rgba(76,170,170,0.4)" stroke-width="1" rx="2"/>
+      ${zoneLabel('couloir-jardin', 26, 139, 8, 'rgba(76,170,170,0.7)')}
+      <rect x="323" y="108" width="22" height="55" fill="rgba(76,170,170,0.09)" stroke="rgba(76,170,170,0.4)" stroke-width="1" rx="2"/>
+      ${zoneLabel('couloir-cour', 334, 139, 8, 'rgba(76,170,170,0.7)')}
+      <rect x="103" y="108" width="22" height="55" fill="rgba(232,201,122,0.06)" stroke="rgba(232,201,122,0.35)" stroke-width="1" rx="2"/>
+      ${zoneLabel('theatre-jardin', 114, 139, 8, 'rgba(232,201,122,0.7)')}
+      <rect x="235" y="108" width="22" height="55" fill="rgba(232,201,122,0.06)" stroke="rgba(232,201,122,0.35)" stroke-width="1" rx="2"/>
+      ${zoneLabel('theatre-cour', 246, 139, 8, 'rgba(232,201,122,0.7)')}
+      <rect x="15" y="167" width="110" height="14" fill="rgba(192,80,80,0.09)" stroke="rgba(192,80,80,0.4)" stroke-width="1" rx="2"/>
+      ${zoneLabel('face-jardin', 70, 177, 9, 'rgba(192,80,80,0.7)')}
+      <rect x="235" y="167" width="110" height="14" fill="rgba(192,80,80,0.09)" stroke="rgba(192,80,80,0.4)" stroke-width="1" rx="2"/>
+      ${zoneLabel('face-cour', 290, 177, 9, 'rgba(192,80,80,0.7)')}
+      ${byZone['asc-jardin'] ? '' : '<rect x="85" y="184" width="30" height="13" fill="none" stroke="rgba(232,228,216,0.22)" stroke-width="0.8" rx="2"/><text x="100" y="193" text-anchor="middle" font-size="8" fill="rgba(232,228,216,0.42)" font-family="DM Sans,sans-serif">ASC</text>'}
+      ${byZone['asc-cour'] ? '' : '<rect x="245" y="184" width="30" height="13" fill="none" stroke="rgba(232,228,216,0.22)" stroke-width="0.8" rx="2"/><text x="260" y="193" text-anchor="middle" font-size="8" fill="rgba(232,228,216,0.42)" font-family="DM Sans,sans-serif">ASC</text>'}
+      <text x="15" y="212" font-size="11" fill="#c05050" font-weight="700" font-style="italic" font-family="DM Sans,sans-serif">JARDIN</text>
+      <text x="345" y="212" text-anchor="end" font-size="11" fill="#c05050" font-weight="700" font-style="italic" font-family="DM Sans,sans-serif">COUR</text>
+      ${parts.join('')}
+    </svg>
+  </div>`;
 }
 
 function renderHoraires(h) {
