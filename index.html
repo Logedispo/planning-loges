@@ -291,6 +291,19 @@ body{
   z-index:3;
   box-shadow:3px 0 8px rgba(28,53,76,.05);
 }
+.cell-initials{
+  display:inline-block;
+  margin-right:4px;
+  padding:1px 4px;
+  border-radius:4px;
+  background:#eaf2ff;
+  color:#1769e8;
+  font-size:8px;
+  line-height:1.4;
+  font-weight:800;
+  letter-spacing:.02em;
+  vertical-align:1px;
+}
 .c-jt{background:#e9f5ff!important;color:#1769e8!important}
 .c-rh{background:#f3f5f7!important;color:#66778a!important}
 .c-off{color:#a4afbb!important}
@@ -1553,6 +1566,17 @@ function planningDayHeader(day) {
   '</div>';
 }
 
+function technicienInitiales(nom) {
+  const value = String(nom || '').trim();
+  const scenique = value.match(/^SC[ÉE]NIQUE\s+(\d+)/i);
+  if (scenique) return 'S' + scenique[1];
+  const parts = value.split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) {
+    return (parts[parts.length - 1][0] + parts[0][0]).toUpperCase();
+  }
+  return value.slice(0,2).toUpperCase();
+}
+
 function renderPlanningContent() {
   const weeks = getWeeks();
   const w = weeks.find(function(x){ return x.id === currentWeekId; }) || weeks[0];
@@ -1562,6 +1586,7 @@ function renderPlanningContent() {
     return;
   }
   const rows = (w.dispositif || []).map(function(p) {
+    const initials = technicienInitiales(p.nom);
     return '<tr><td class="name-cell">' + p.nom + '</td>' +
       p.jours.map(function(j) {
         const u = String(j || '').toUpperCase();
@@ -1569,7 +1594,10 @@ function renderPlanningContent() {
         if (u === 'JT' || u === 'JF') cls = 'c-jt';
         else if (u === 'RH') cls = 'c-rh';
         else if (!j || j === '—') cls = 'c-off';
-        return '<td class="' + cls + '">' + (j || '—') + '</td>';
+        const display = (!j || j === '—')
+          ? '—'
+          : '<span class="cell-initials">' + initials + '</span>' + j;
+        return '<td class="' + cls + '">' + display + '</td>';
       }).join('') +
       '<td style="text-align:right;color:var(--text3);font-size:10px">' + (p.h || '—') + '</td></tr>';
   }).join('');
