@@ -162,7 +162,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);pad
 
 <div id="s-conduites" class="screen active">
   <div class="page-title">Conduites</div>
-  <div class="page-sub">Conduites actives · 2026–2027</div>
+  <div class="page-sub">Saison en cours</div>
   <div id="conduites-list"></div>
 </div>
 
@@ -176,7 +176,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);pad
 
 <div id="s-planning" class="screen">
   <div class="page-title">Planning</div>
-  <div class="page-sub">S39 à S44 · septembre–novembre 2026</div>
+  <div class="page-sub">Semaines à venir</div>
   <div class="week-scroll" id="week-tabs"></div>
   <div id="planning-content"></div>
 </div>
@@ -360,21 +360,372 @@ const DB = {
 };
 function getPwd() { return DB.get('pwd') || 'bastille'; }
 
-// ── CONDUITES ET PLANNINGS : MISE À JOUR DU 22/09/2026 ──
-const SEED_OPERAS = [{"id":"barbier-seville-2026","nom":"Le Barbier de Séville","type":"Opéra en deux actes","comp":"—","saison":"2026-2027","equipe":{"Rég. Production":"Erwan (8079)","Machinerie":"—","Habillement":"—","Dispo Scénique":"(2049)"},"soiree":{"parties":["Acte 1","Acte 2"],"debut":["19h30","21h40"],"fin":["21h10","22h50"],"entractes":[30,"—"],"total":"3h20"},"apresMidi":{"parties":["Acte 1","Acte 2"],"debut":["14h30","16h40"],"fin":["16h10","17h50"],"entractes":[30,"—"],"total":"3h20"},"interventions":[{"label":"Mise / lendemain matin","texte":"Les confettis dorés doivent être ramassés le lendemain matin de chaque représentation (trottoir avant et arrière + vérifier les étages)."},{"label":"1er entracte","texte":"Ramasser les restes de journaux et papiers."}],"notes":"Deux le matin et le soir. Fiche affichée avec la mention de saison 2021/2022 ; horaires et interventions repris du document transmis.","schemaHtml":"<div style=\"background:var(--bg4);border-radius:10px;padding:10px 8px\"><svg viewBox=\"0 0 360 225\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Plan du Barbier de Séville : une loge face jardin, deux loges face cour et emplacements à laisser libres pour la voiture et la moto\" style=\"width:100%;height:auto;display:block\">\n<g stroke=\"rgba(232,228,216,.4)\" fill=\"none\" stroke-width=\"1.3\"><path d=\"M8 12H352V199H8Z M8 113H352 M125 12V199 M235 12V199 M38 199V215H125 M125 199V215H235 M235 199V215H323\"/></g>\n<g fill=\"rgba(201,168,76,.21)\" stroke=\"#c9a84c\" stroke-width=\"1\"><rect x=\"11\" y=\"175\" width=\"60\" height=\"23\" rx=\"2\"/><rect x=\"73\" y=\"175\" width=\"20\" height=\"23\" rx=\"2\"/><rect x=\"265\" y=\"175\" width=\"42\" height=\"23\" rx=\"2\"/><rect x=\"310\" y=\"175\" width=\"38\" height=\"23\" rx=\"2\"/></g>\n<g font-family=\"DM Sans,sans-serif\" font-size=\"9\" fill=\"#f0d68f\" text-anchor=\"middle\"><text x=\"41\" y=\"185\">8 fig.</text><text x=\"41\" y=\"194\">femmes</text><text x=\"83\" y=\"190\">2</text><text x=\"286\" y=\"189\">16 fig.¹</text><text x=\"329\" y=\"189\">8 fig.</text></g>\n<g fill=\"rgba(76,170,170,.12)\" stroke=\"rgba(76,170,170,.65)\" stroke-dasharray=\"3 2\"><rect x=\"96\" y=\"158\" width=\"28\" height=\"40\" rx=\"2\"/><rect x=\"236\" y=\"158\" width=\"26\" height=\"40\" rx=\"2\"/></g>\n<g font-family=\"DM Sans,sans-serif\" font-size=\"9\" fill=\"var(--text2)\"><text x=\"12\" y=\"223\">JARDIN</text><text x=\"348\" y=\"223\" text-anchor=\"end\">COUR</text><text x=\"106\" y=\"147\" text-anchor=\"middle\">Voiture</text><text x=\"249\" y=\"147\" text-anchor=\"middle\">Moto</text><text x=\"180\" y=\"65\" text-anchor=\"middle\" opacity=\".6\">PLATEAU</text></g>\n</svg><div style=\"font-size:11px;color:var(--text2);padding:7px 4px 0\">Face jardin : 1 loge, 8 chaises et 5 paravents. Face cour : 2 loges, 20 chaises et 12 paravents. Total : 3 loges, 28 chaises, 17 paravents.</div><div style=\"font-size:10px;color:var(--text3);padding:4px\">¹ « 16 fig. » : annotation manuscrite sur le plan, à vérifier. Jardin : laisser la place pour la voiture et commencer les loges à partir de l’horloge rouge. Cour : laisser la place pour la moto.</div></div>"},{"id":"hamlet-2026","nom":"Hamlet","type":"Opéra","comp":"—","saison":"2026-2027","equipe":{"Rég. Production":"—","Machinerie":"—","Habillement":"—","Dispo Scénique":"(2049)"},"soiree":{"parties":["Partie 1","Partie 2"],"debut":["19h30","22h20"],"fin":["21h40","23h10"],"entractes":[40,"—"],"total":"3h40"},"apresMidi":{"parties":["Partie 1","Partie 2"],"debut":["14h30","17h20"],"fin":["16h40","18h10"],"entractes":[40,"—"],"total":"3h40"},"interventions":[{"label":"Mise","texte":"Passer de l’arlequin sur le sol (zones glissantes). La loge de 3 ascenseur a été déplacée à la face."},{"label":"Entracte","texte":"Ramasser les filaments dorés à la main. Loge jardin face : faire à l’entracte."},{"label":"Fin du spectacle","texte":"Avant les saluts, essuyer sang et cendre à la face (1 lavette, chiffons)."}],"notes":"Sur la fiche, les quantités récapitulatives des loges, chaises et paravents ne sont pas renseignées.","schemaHtml":"<div style=\"background:var(--bg4);border-radius:10px;padding:10px 8px\"><svg viewBox=\"0 0 360 235\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Plan Hamlet : 72 hommes et 70 femmes au centre, loges 3 et 3 à jardin, 12, 5, 4 et 3 à cour, et loge de 3 à jardin face\" style=\"width:100%;height:auto;display:block\">\n<g stroke=\"rgba(232,228,216,.42)\" stroke-width=\"1.3\" fill=\"none\"><rect x=\"8\" y=\"10\" width=\"344\" height=\"198\"/><path d=\"M8 107H352 M120 10V208 M240 10V208 M39 208V225H120 M120 208V225H240 M240 208V225H321\"/></g>\n<g fill=\"rgba(201,168,76,.19)\" stroke=\"#c9a84c\" stroke-width=\"1\"><rect x=\"124\" y=\"78\" width=\"112\" height=\"13\" rx=\"1\"/><rect x=\"124\" y=\"92\" width=\"112\" height=\"13\" rx=\"1\"/><rect x=\"72\" y=\"110\" width=\"22\" height=\"23\" rx=\"1\"/><rect x=\"97\" y=\"110\" width=\"22\" height=\"23\" rx=\"1\"/><rect x=\"243\" y=\"110\" width=\"26\" height=\"23\" rx=\"1\"/><rect x=\"271\" y=\"110\" width=\"18\" height=\"23\" rx=\"1\"/><rect x=\"291\" y=\"110\" width=\"18\" height=\"23\" rx=\"1\"/><rect x=\"311\" y=\"110\" width=\"19\" height=\"23\" rx=\"1\"/><rect x=\"72\" y=\"181\" width=\"22\" height=\"23\" rx=\"1\"/></g>\n<g fill=\"#f0d68f\" text-anchor=\"middle\" font-family=\"DM Sans,sans-serif\" font-size=\"10\"><text x=\"180\" y=\"88\">72 hommes</text><text x=\"180\" y=\"102\">70 femmes</text><text x=\"83\" y=\"125\">3</text><text x=\"108\" y=\"125\">3</text><text x=\"256\" y=\"125\">12</text><text x=\"280\" y=\"125\">5¹</text><text x=\"300\" y=\"125\">4</text><text x=\"321\" y=\"125\">3</text><text x=\"83\" y=\"197\">3</text></g>\n<g fill=\"var(--text2)\" font-family=\"DM Sans,sans-serif\" font-size=\"10\"><text x=\"10\" y=\"234\">JARDIN</text><text x=\"350\" y=\"234\" text-anchor=\"end\">COUR</text></g>\n</svg><div style=\"font-size:11px;color:var(--text2);padding:6px 4px 0\">Loge de 3 à jardin face : à faire à l’entracte. La loge « 3 » côté ascenseur est indiquée comme déplacée à la face.</div><div style=\"font-size:10px;color:var(--text3);padding:4px\">¹ Chiffre repris de l’annotation manuscrite : 5 (à confirmer). Les chiffres du plan sont conservés tels quels ; le tableau récapitulatif des chaises et paravents est vide sur la fiche.</div></div>"}];
-const SEED_WEEKS = [{"id":"s39-2026","label":"S39","dates":"21–27 septembre 2026","startISO":"2026-09-21","bastille":[{"jour":"Lun 21","dateISO":"2026-09-21","matin":"SP CREP","am":"MISE HAML","soir":"R2 HAML","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP ACCO","am":"REP ACCO","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mar 22","dateISO":"2026-09-22","matin":"MISE CREP","am":"SPC CREP","soir":"SPC CREP","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"MISE ACCO","am":"FIL ACCO","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mer 23","dateISO":"2026-09-23","matin":"LUM CREP","am":"MISE BARB","soir":"R4 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"GEN ACCO","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Jeu 24","dateISO":"2026-09-24","matin":"ITAC CREP","am":"MISE HAML","soir":"R3 HAML","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"MISE ACCO","soir":"R1 ACCO","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Ven 25","dateISO":"2026-09-25","matin":"MISE CREP","am":"GENP CREP","soir":"GENP CREP","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"MISE DMD","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Sam 26","dateISO":"2026-09-26","matin":"LUM CREP","am":"MISE BARB","soir":"R5 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"R1 DMD","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Dim 27","dateISO":"2026-09-27","matin":"MISE HAML","am":"R4 HAML","soir":"MISE CREP","matinType":"rep","amType":"opera","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}}],"dispositif":[{"nom":"MANSIOT Denis","jours":["JT","JT","JT","JT","JT","RH","RH"],"h":"0,00"},{"nom":"FOUGERAY Franck","jours":["1524 CP / S","1524 CP / S","1524 CP / S","1524 CP / S","R CP / M","RH CP / M","RH CP / M"],"h":"0,00"},{"nom":"WEBER Adrien","jours":["816 / M","816 / M","816 / M","816 / M","816 / M","RH","RH"],"h":"35,00"},{"nom":"BARRAGAN Maurane","jours":["816 CP / M","816 CP / M","816 CP / M","R CP / S","1524 CP / S","RH CP / S","RH CP / S"],"h":"0,00"},{"nom":"GOUIN Pierre","jours":["R / M","816 / M","816 / M","816 / M","816 / M","RH / M","RH / M"],"h":"28,00"},{"nom":"REITH Wilfrid","jours":["1524 / S","1524 / S","1524 / S","RH / S","RH / S","1324 / S","1019 / S"],"h":"42,00"},{"nom":"RINTO Romain","jours":["1524 / S","RH / S","RH / S","1524 / S","1524 / S","1324 / S","1019 / S"],"h":"42,00"},{"nom":"CRISTOFARI Valentina","jours":["816 / denis","1524 CP","1524 CP","1524 CP","1524 CP","—","—"],"h":"39,00"},{"nom":"NESI Valentina","jours":["1524 CP","1524 CP","—","1524 CP","1524 CP","—","1019 / Hamel"],"h":"40,00"}]},{"id":"s40-2026","label":"S40","dates":"28 sept. – 4 oct. 2026","startISO":"2026-09-28","bastille":[{"jour":"Lun 28","dateISO":"2026-09-28","matin":"SO CREP","am":"SO CREP","soir":"LUM CREP","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"DEBL DMD","am":"MUSI MADR","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mar 29","dateISO":"2026-09-29","matin":"SOC CREP","am":"SOC CREP","soir":"LUM CREP","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"MISE LOAM","am":"R1 LOAM","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mer 30","dateISO":"2026-09-30","matin":"SO CREP","am":"MISE HAML","soir":"R5 HAML","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Jeu 1","dateISO":"2026-10-01","matin":"MISE BARB","am":"CORR BARB","soir":"R6 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Ven 2","dateISO":"2026-10-02","matin":"MISE CREP","am":"LUM CREP","soir":"PGEN CREP","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"TEC ETOP","am":"TEC ETOP","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Sam 3","dateISO":"2026-10-03","matin":"LUM CREP","am":"MISE HAML","soir":"R6 HAML","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP ETOP","am":"MISE ETOP","soir":"R2 ETOP","matinType":"rep","amType":"rep","soirType":"rep"},"nuit":"Nuit"},{"jour":"Dim 4","dateISO":"2026-10-04","matin":"MISE BARB","am":"R7 BARB","soir":"MISE CREP","matinType":"rep","amType":"opera","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"SP ORDU","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"R3 ETOP","am":"R4 ETOP","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}}],"dispositif":[{"nom":"MANSIOT Denis","jours":["JT CP","JT CP","JT CP","JT CP","JT CP","RH CP","RH CP"],"h":"0,00"},{"nom":"FOUGERAY Franck","jours":["816 / M","816 / M","816 / M","816 / M","816 / M","RH / M","RH / M"],"h":"35,00"},{"nom":"WEBER Adrien","jours":["RH / M","816 / M","RH / M","1524 / S","1524 / S","1324 / S","1019 / S"],"h":"41,00"},{"nom":"BARRAGAN Maurane","jours":["RH CP / S","1019 CP / S","1524 CP / S","RH CP / S","1524 CP / S","1324 CP / S","1019 CP / S"],"h":"0,00"},{"nom":"GOUIN Pierre","jours":["1019 / S","RH / S","1524 / S","RH / S","1524 / S","1324 / S","1019 / S"],"h":"42,00"},{"nom":"REITH Wilfrid","jours":["1019 / S","1019 / S","1524 / S","R / S","R / M","RH / M","RH / M"],"h":"24,00"},{"nom":"RINTO Romain","jours":["816 / M","R / M","816 / M","816 / M","816 / M","RH","RH"],"h":"28,00"},{"nom":"CRISTOFARI Valentina","jours":["—","—","—","—","—","—","—"],"h":"0,00"},{"nom":"NESI Valentina","jours":["—","1019 CP","1524 CP","1524 CP","1524 CP","1324 CP","—"],"h":"42,00"}]},{"id":"s41-2026","label":"S41","dates":"5–11 octobre 2026","startISO":"2026-10-05","bastille":[{"jour":"Lun 5","dateISO":"2026-10-05","matin":"LUM CREP","am":"LUM CREP","soir":"AVP CREP","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"R5 ETOP","am":"R6 ETOP","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mar 6","dateISO":"2026-10-06","matin":"LTV CREP","am":"MISE HAML","soir":"R7 HAML","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"R7 ETOP","am":"R8 ETOP","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mer 7","dateISO":"2026-10-07","matin":"MISE BARB","am":"CORR BARB","soir":"R8 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Jeu 8","dateISO":"2026-10-08","matin":"MISE CREP","am":"LUM CREP","soir":"R1 CREP","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Ven 9","dateISO":"2026-10-09","matin":"MISE HAML","am":"CORR HAML","soir":"R8 HAML","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP COMC","am":"RACC COMC","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Sam 10","dateISO":"2026-10-10","matin":"—","am":"MISE BARB","soir":"R9 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP ORDU","am":"SP ORDU","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"MISE COMC","soir":"R1 COMC","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Dim 11","dateISO":"2026-10-11","matin":"MISE CREP","am":"R2 CREP","soir":"MISE ORDU","matinType":"rep","amType":"opera","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}}],"dispositif":[{"nom":"MANSIOT Denis","jours":["JT","JT","JT","JT","JT","RH","RH"],"h":"0,00"},{"nom":"FOUGERAY Franck","jours":["816 / M","816 / M","816 / M","1524 / S","1524 / S","RH / S","RH / S"],"h":"37,00"},{"nom":"WEBER Adrien","jours":["RH / S","1524 / S","1524 / S","1524 / S","1524 / S","RH / S","1019 / S"],"h":"40,00"},{"nom":"BARRAGAN Maurane","jours":["816 CP / M","816 CP / M","R CP / M","816 CP / M","816 CP / M","RH CP","RH CP"],"h":"0,00"},{"nom":"GOUIN Pierre","jours":["1524 / S","1524 / S","R / S","R / S","R / M","RH / M","RH / M"],"h":"16,00"},{"nom":"REITH Wilfrid","jours":["816 / M","816 / M","816 / M","816 / M","816 / M","RH / M","RH / M"],"h":"35,00"},{"nom":"RINTO Romain","jours":["1524 / S","RH / S","1524 / S","RH / S","1524 / S","1324 / S","1019 / S"],"h":"42,00"},{"nom":"NESI Valentina","jours":["1524 CP","1524 CP","—","1524 CP","—","1324 CP","1019 CP"],"h":"42,00"},{"nom":"SCÉNIQUE 2","jours":["—","—","—","816 / Crep","816 CP","—","—"],"h":"14,00"},{"nom":"SCÉNIQUE 1","jours":["—","—","—","—","—","—","—"],"h":"0,00"}]},{"id":"s42-2026","label":"S42","dates":"12–18 octobre 2026","startISO":"2026-10-12","bastille":[{"jour":"Lun 12","dateISO":"2026-10-12","matin":"TEC ORDU","am":"TEC ORDU","soir":"FIL ORDU","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"SP ORDU","soir":"SP ORDU","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP ACCO","am":"FIL ACCO","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mar 13","dateISO":"2026-10-13","matin":"LUM ORDU","am":"LUM ORDU","soir":"SP ORDU","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"GEN ACCO","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mer 14","dateISO":"2026-10-14","matin":"LUM ORDU","am":"GENP ORDU","soir":"LUM ORDU","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"MISE ACCO","soir":"R1 ACCO","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Jeu 15","dateISO":"2026-10-15","matin":"SO ORDU","am":"SO ORDU","soir":"LUM ORDU","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Ven 16","dateISO":"2026-10-16","matin":"LUM ORDU","am":"LUM ORDU","soir":"GEN ORDU","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"MISE DMD","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Sam 17","dateISO":"2026-10-17","matin":"TEC WALK","am":"TEC WALK","soir":"TEC WALK","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"R1 DMD","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Dim 18","dateISO":"2026-10-18","matin":"MISE CREP","am":"R3 CREP","soir":"MISE WALK","matinType":"rep","amType":"opera","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"nuit":"Nuit"}],"dispositif":[{"nom":"MANSIOT Denis","jours":["JT","JT","JT","JT","JT","RH","RH"],"h":"0,00"},{"nom":"FOUGERAY Franck","jours":["RH / S","1524 / S","1019 / S","1019 / S","1524 / S","RH / S","1019 / S"],"h":"40,00"},{"nom":"WEBER Adrien","jours":["816 / M","R / M","R / M","816 / M","816 / M","RH / M","RH / M"],"h":"21,00"},{"nom":"BARRAGAN Maurane","jours":["RH / S","1524 / S","1019 / S","1019 / S","1524 / S","RH / S","1019 / S"],"h":"40,00"},{"nom":"GOUIN Pierre","jours":["R / M","816 / M","816 / M","816 / M","816 / M","RH / M","RH / M"],"h":"28,00"},{"nom":"REITH Wilfrid","jours":["RH / M","816 / M","816 / M","1019 / S","1524 / S","RH / S","1019 / S"],"h":"38,00"},{"nom":"RINTO Romain","jours":["R CP / S","1524 CP / S","1524 CP / S","1524 CP / S","816 CP / M","RH CP / M","RH CP / M"],"h":"0,00"},{"nom":"SCÉNIQUE 2","jours":["—","—","—","—","—","—","—"],"h":"0,00"},{"nom":"SCÉNIQUE 1","jours":["816 CP","1524","1019 CP","—","—","—","—"],"h":"23,00"}]},{"id":"s43-2026","label":"S43","dates":"19–25 octobre 2026","startISO":"2026-10-19","bastille":[{"jour":"Lun 19","dateISO":"2026-10-19","matin":"LUM WALK","am":"FIL WALK","soir":"LUM WALK","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP ADO","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"note":"Maurane bloquée"},{"jour":"Mar 20","dateISO":"2026-10-20","matin":"LUM WALK","am":"SP WALK","soir":"SP WALK","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP ADO","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mer 21","dateISO":"2026-10-21","matin":"LUM WALK","am":"GENP WALK","soir":"GENP WALK","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"TEC TURA","am":"TEC TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP ADO","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Jeu 22","dateISO":"2026-10-22","matin":"MISE BARB","am":"SP BARB","soir":"SP BARB","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"SP TURA","soir":"SP TURA","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"note":"Maurane bloquée"},{"jour":"Ven 23","dateISO":"2026-10-23","matin":"MISE WALK","am":"SO WALK","soir":"SO WALK","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"REP COMC","am":"RACC COMC","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Sam 24","dateISO":"2026-10-24","matin":"LUM WALK","am":"MISE BARB","soir":"R10 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"MISE COMC","soir":"R1 COMC","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Dim 25","dateISO":"2026-10-25","matin":"MISE WALK","am":"LUM WALK","soir":"LUM WALK","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}}],"dispositif":[{"nom":"MANSIOT Denis","jours":["JT","JT","JT","JT","JT","RH","RH"],"h":"0,00"},{"nom":"FOUGERAY Franck","jours":["R / M","816 / M","816 / M","816 / M","816 / M","RH","RH"],"h":"28,00"},{"nom":"WEBER Adrien","jours":["RH / S","1524 / S","1524 / S","1524 / S","1524 / S","1324 / S","RH / S"],"h":"42,00"},{"nom":"BARRAGAN Maurane","jours":["R / S","1524 / S","1524 / S","R / S","816 / M","RH / M","RH / M"],"h":"23,00"},{"nom":"GOUIN Pierre","jours":["816 / M","816 / M","816 / M","1524 / S","1524 / S","RH / S","RH / S"],"h":"37,00"},{"nom":"REITH Wilfrid","jours":["RH / S","R / S","R / S","R / S","R / S","1324 / S","RH / S"],"h":"10,00"},{"nom":"RINTO Romain","jours":["816 CP / M","816 CP / M","816 CP / M","816 CP / M","816 CP / M","RH CP / M","RH CP / M"],"h":"0,00"},{"nom":"DOMENICI Alessandra","jours":["816 CP","—","—","—","—","—","—"],"h":"7,00"},{"nom":"SCÉNIQUE 2","jours":["—","—","—","—","—","—","—"],"h":"0,00"},{"nom":"SCÉNIQUE 1","jours":["—","—","—","816 CP","—","—","—"],"h":"7,00"}]},{"id":"s44-2026","label":"S44","dates":"26 oct. – 1er nov. 2026","startISO":"2026-10-26","bastille":[{"jour":"Lun 26","dateISO":"2026-10-26","matin":"LTV WALK","am":"GEN WALK","soir":"TEC SIEG","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"—","am":"SP TURA","soir":"SP TURA","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"MISE COMC","am":"REP COMC","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mar 27","dateISO":"2026-10-27","matin":"TEC SIEG","am":"TEC SIEG","soir":"TEC SIEG","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"MISE COMC","soir":"R1 COMC","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Mer 28","dateISO":"2026-10-28","matin":"LUM SIEG","am":"MISE BARB","soir":"R11 BARB","matinType":"rep","amType":"rep","soirType":"opera","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Jeu 29","dateISO":"2026-10-29","matin":"MISE SIEG","am":"FIL SIEG","soir":"SP SIEG","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Ven 30","dateISO":"2026-10-30","matin":"LUM SIEG","am":"LUM SIEG","soir":"SP SIEG","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"MISE DMD","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Sam 31","dateISO":"2026-10-31","matin":"LUM SIEG","am":"GENP SIEG","soir":"GENP SIEG","matinType":"rep","amType":"rep","soirType":"rep","gounod":{"matin":"SP TURA","am":"SP TURA","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"R1 DMD","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}},{"jour":"Dim 1","dateISO":"2026-11-01","matin":"MISE BARB","am":"R12 BARB","soir":"MISE SIEG","matinType":"rep","amType":"opera","soirType":"rep","gounod":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"},"amphi":{"matin":"—","am":"—","soir":"—","matinType":"rep","amType":"rep","soirType":"rep"}}],"dispositif":[{"nom":"MANSIOT Denis","jours":["JT","JT","JT","JT","JT","RH","JF"],"h":"0,00"},{"nom":"FOUGERAY Franck","jours":["1019 / S","RH / S","RH / S","1524 / S","1524 / S","1324 / S","1019 / S"],"h":"42,00"},{"nom":"WEBER Adrien","jours":["1019 / S","RH / S","1524 / S","R / S","816 / M","RH / M","JF / M"],"h":"23,00"},{"nom":"BARRAGAN Maurane","jours":["RH / M","816 / M","816 / M","816 / M","816 / M","RH / M","JF / M"],"h":"28,00"},{"nom":"GOUIN Pierre","jours":["RH / S","RH / S","1524 / S","1524 / S","1524 / S","1324 / S","1019 / S"],"h":"42,00"},{"nom":"REITH Wilfrid","jours":["816 / M","816 / M","816 / M","816 / M","RH / M","RH","JF"],"h":"28,00"},{"nom":"RINTO Romain","jours":["816 CP / M","816 CP / M","816 RCC / M","1524 RCC / S","1524 RCC / S","RH RCC / S","JF / S"],"h":"21,00"},{"nom":"DOMENICI Alessandra","jours":["816 CP","—","—","—","—","—","—"],"h":"7,00"},{"nom":"SCÉNIQUE 2","jours":["—","—","—","—","—","—","—"],"h":"0,00"},{"nom":"SCÉNIQUE 1","jours":["—","—","—","—","—","—","—"],"h":"0,00"}]}];
-
-// À la première ouverture de cette version, ne pas réafficher les anciennes
-// conduites ou semaines éventuellement sauvegardées par l'ancienne PWA.
-const DATASET_VERSION = '2026-09-22-s39-s44';
-if (DB.get('dataset_version') !== DATASET_VERSION) {
-  ['deleted_operas','deleted_weeks','custom_operas','custom_weeks'].forEach(k => DB.del(k));
-  for (let i=localStorage.length-1;i>=0;i--) {
-    const k=localStorage.key(i);
-    if (k && k.startsWith('ob_schema_')) localStorage.removeItem(k);
-  }
-  DB.set('dataset_version', DATASET_VERSION);
+// Chaque livraison officielle remplace les anciennes données enregistrées
+// dans le navigateur, tout en conservant le mot de passe administrateur.
+const DATA_VERSION = '2026-09-24-v2';
+if (DB.get('data_version') !== DATA_VERSION) {
+  ['deleted_operas','deleted_weeks','custom_operas','custom_weeks'].forEach(k=>DB.del(k));
+  DB.set('data_version', DATA_VERSION);
 }
+
+// ── SEED DATA ──
+const LEGACY_OPERAS = [
+  {
+    id:'bayadere', nom:'Bayadère', type:'Ballet en quatre actes', comp:'L. Minkus', saison:'2025-2026',
+    soiree:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['19h30','20h30','21h35'],
+      fin:['20h20','21h25','22h15'],
+      entractes:[20,20,'—'],
+      total:'2h45'
+    },
+    interventions:[
+      {label:'Mise', texte:'—'},
+      {label:'Entractes', texte:'Coup de balai. 2ᵉ entracte : enlever les taches dorées de maquillage au chiffon sur le lino.'},
+      {label:'Fin du spectacle', texte:'—'}
+    ],
+    loges:[
+      {zone:'couloir-jardin', chaises:6},
+      {zone:'couloir-jardin', chaises:6},
+      {zone:'face-cour', chaises:4},
+      {zone:'face-cour', chaises:4},
+      {zone:'face-cour', chaises:3},
+      {zone:'asc-jardin', chaises:2}
+    ],
+  },
+  {
+    id:'traviata', nom:'La Traviata', type:'Opéra en trois actes', comp:'G. Verdi', saison:'2025-2026',
+    soiree:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['19h30','20h30','22h00'],
+      fin:['20h00','21h35','22h35'],
+      entractes:[30,25,'—'],
+      total:'3h05'
+    },
+    interventions:[
+      {label:'Mise', texte:'Mettre un coup au sol.'},
+      {label:'Entractes', texte:'—'},
+      {label:'Fin du spectacle', texte:'—'}
+    ],
+    loges:[
+      {zone:'lointain-jardin', chaises:12},
+      {zone:'lointain-jardin', chaises:12},
+      {zone:'couloir-cour', chaises:6},
+      {zone:'couloir-cour', chaises:2},
+      {zone:'couloir-cour', chaises:2},
+      {zone:'asc-cour', chaises:3}
+    ],
+  },
+];
+
+const LEGACY_WEEKS = [
+  {id:'s27',label:'S27',dates:'29 Juin – 5 Juillet 2026',bastille:[
+    {jour:'Lun 29', matin:'HORP EDD', matinType:'rep', am:'LTV BAYA', amType:'rep', soir:'R9 BAYA', soirType:'ballet'},
+    {jour:'Mar 30', matin:'HORP EDD', matinType:'rep', am:'MISE BAYA', amType:'rep', soir:'R10 BAYA', soirType:'ballet'},
+    {jour:'Mer 1', matin:'AUDI AUDC', matinType:'rep', am:'MISE TRAV', amType:'rep', soir:'R10 TRAV', soirType:'opera'},
+    {jour:'Jeu 2', matin:'—', matinType:'rep', am:'MISE BAYA', amType:'rep', soir:'R11 BAYA', soirType:'ballet'},
+    {jour:'Ven 3', matin:'—', matinType:'rep', am:'SP BAYA', amType:'rep', soir:'R12 BAYA', soirType:'ballet'},
+    {jour:'Sam 4', matin:'—', matinType:'rep', am:'MISE TRAV', amType:'rep', soir:'R11 TRAV', soirType:'opera'},
+    {jour:'Dim 5', matin:'MISE BAYA', matinType:'rep', am:'R13 BAYA', amType:'ballet', soir:'—', soirType:'rep'},
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['RH / M','RH / M','R / M','1524 / S','1524 / S','R / S','R / S'],h:'34.00'},
+    {nom:'WEBER Adrien',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'35.00'},
+    {nom:'BARRAGAN Maurane',jours:['R / S','1524 / S','1524 / S','1524 / S','R / S','RH / S','RH / S'],h:'24.00'},
+    {nom:'GOUIN Pierre',jours:['1524 / S','R / S','1524 / S','R / S','R / M','RH / M','RH / M'],h:'16.00'},
+    {nom:'REITH Wilfrid',jours:['1524 / S','1524 / S','RH / S','RH / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'RINTO Romain',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
+  ]},
+  {id:'s28',label:'S28',dates:'6–12 Juillet 2026',bastille:[
+    {jour:'Lun 6', matin:'—', matinType:'rep', am:'SP BAYA', amType:'rep', soir:'R14 BAYA', soirType:'ballet'},
+    {jour:'Mar 7', matin:'—', matinType:'rep', am:'MISE TRAV', amType:'rep', soir:'R12 TRAV', soirType:'opera'},
+    {jour:'Mer 8', matin:'AUDI AUDC', matinType:'rep', am:'MISE BAYA', amType:'rep', soir:'R15 BAYA', soirType:'ballet'},
+    {jour:'Jeu 9', matin:'—', matinType:'rep', am:'SP BAYA', amType:'rep', soir:'R16 BAYA', soirType:'ballet'},
+    {jour:'Ven 10', matin:'—', matinType:'rep', am:'MISE TRAV', amType:'rep', soir:'R13 TRAV', soirType:'opera'},
+    {jour:'Sam 11', matin:'—', matinType:'rep', am:'MISE BAYA', amType:'rep', soir:'R17 BAYA', soirType:'ballet'},
+    {jour:'Dim 12', matin:'MISE BAYA', matinType:'rep', am:'R18 BAYA', amType:'ballet', soir:'—', soirType:'rep'},
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT 11H','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['R / S','1524 / S','1524 / S','1524 / S','1524 / S','RH / S','RH / S'],h:'32.00'},
+    {nom:'WEBER Adrien',jours:['1524 / S','1524 / S','RH / S','RH / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'BARRAGAN Maurane',jours:['816 / M','816 / M','816 / M','816 / M','R / M','RH','RH'],h:'28.00'},
+    {nom:'GOUIN Pierre',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
+    {nom:'REITH Wilfrid',jours:['816 CP / S','R / S','1524 CP / S','R / S','816 CP / M','RH / M','RH / M'],h:'23.00'},
+    {nom:'RINTO Romain',jours:['R / M','RH / M','816 / M','1524 / M','RH / M','1324 / S','1019 / S'],h:'33.00'},
+    {nom:'CRISTOFARI Valentina',jours:['—','1524 / S','1524 / S','816 / M','—','—','—'],h:'26.00'},
+  ]},
+  {id:'s29',label:'S29',dates:'13–19 Juillet 2026',bastille:[
+    {jour:'Lun 13', matin:'—', matinType:'rep', am:'MISE TRAV', amType:'rep', soir:'R14 TRAV', soirType:'opera'},
+    {jour:'Mar 14', matin:'MISE BAYA', matinType:'rep', am:'R19 BAYA', amType:'ballet', soir:'—', soirType:'rep'},
+    {jour:'Mer 15', matin:'DESC TRAV', matinType:'rep', am:'TEC', amType:'rep', soir:'TEC', soirType:'rep'},
+    {jour:'Jeu 16', matin:'TEC', matinType:'rep', am:'TEC', amType:'rep', soir:'TEC', soirType:'rep'},
+    {jour:'Ven 17', matin:'TEC', matinType:'rep', am:'TEC', amType:'rep', soir:'TEC', soirType:'rep'},
+    {jour:'Sam 18', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Dim 19', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JF','JT','JT G&P','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 / M','JF / M','816 / M','816 G&P / M','816 / M','RH / M','RH / M'],h:'28.00'},
+    {nom:'WEBER Adrien',jours:['R / S','1019 / S','816 / S','816 G&P / S','816 / M','RH / M','RH / M'],h:'29.00'},
+    {nom:'BARRAGAN Maurane',jours:['1524 / S','1019 / S','816 / S','816 G&P / S','816 / S','RH / S','RH / S'],h:'37.00'},
+    {nom:'GOUIN Pierre',jours:['R / M','JF / M','816 / M','816 G&P / M','816 / S','RH / S','RH / S'],h:'21.00'},
+    {nom:'REITH Wilfrid',jours:['816 / M','JF / M','816 / M','816 G&P / M','816 / M','RH','RH'],h:'28.00'},
+    {nom:'RINTO Romain',jours:['1524 / S','JF / S','816 / S','816 G&P / S','816 / S','RH / S','RH / S'],h:'29.00'},
+  ]},
+  {id:'s30',label:'S30',dates:'20–26 Juillet 2026',bastille:[
+    {jour:'Lun 20', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Mar 21', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Mer 22', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Jeu 23', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Ven 24', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Sam 25', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Dim 26', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['R','R','R','R','R','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 / S','816 / S','816 / S','816 / S','816 / S','RH / S','RH / S'],h:'35.00'},
+    {nom:'WEBER Adrien',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
+    {nom:'BARRAGAN Maurane',jours:['816 / S','816 / S','816 / S','816 / S','816 / M','RH / M','RH / M'],h:'35.00'},
+    {nom:'GOUIN Pierre',jours:['816 CP / S','816 CP / S','816 CP / S','816 CP / S','816 CP / S','RH CP / S','RH CP / S'],h:'0.00'},
+    {nom:'REITH Wilfrid',jours:['816 / M','816 / M','816 / M','816 / S','816 / S','RH / S','RH / S'],h:'35.00'},
+    {nom:'RINTO Romain',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'35.00'},
+  ]},
+  {id:'s31',label:'S31',dates:'27 Juillet – 2 Août 2026',bastille:[
+    {jour:'Lun 27', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Mar 28', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Mer 29', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Jeu 30', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Ven 31', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Sam 1', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+    {jour:'Dim 2', matin:'—', matinType:'rep', am:'—', amType:'rep', soir:'—', soirType:'rep'},
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT CP','JT CP','JT CP','JT CP','JT CP','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 CP / S','816 CP / S','816 CP / S','816 CP / S','816 CP / M','RH','RH'],h:'0.00'},
+    {nom:'WEBER Adrien',jours:['816 CP / M','816 CP / M','816 CP / M','816 CP / S','816 CP / S','RH','RH'],h:'0.00'},
+    {nom:'BARRAGAN Maurane',jours:['816 CP / M','816 CP / M','816 CP / M','816 CP / M','816 CP / M','RH','RH'],h:'0.00'},
+    {nom:'GOUIN Pierre',jours:['816 CP / M','816 CP / M','816 CP / M','816 CP / M','816 CP / M','RH CP','RH CP'],h:'0.00'},
+    {nom:'REITH Wilfrid',jours:['816 CP / S','816 CP / S','816 CP / S','816 CP / S','816 CP / S','RH','RH'],h:'0.00'},
+    {nom:'RINTO Romain',jours:['816 CP / S','816 CP / S','816 CP / S','816 CP / S','816 CP / S','RH','RH'],h:'0.00'},
+  ]},
+];
+
+// ── DONNÉES OFFICIELLES — SEPTEMBRE / OCTOBRE 2026 ──
+const SEED_OPERAS = [
+  {
+    id:'barbier-seville', nom:'Le Barbier de Séville', type:'Opéra en deux actes', comp:'G. Rossini', saison:'2026-2027',
+    soiree:{
+      parties:['Acte 1','Acte 2'],
+      debut:['19h30','21h40'],
+      fin:['21h10','22h50'],
+      entractes:[30,'—'],
+      total:'3h20'
+    },
+    apresMidi:{
+      parties:['Acte 1','Acte 2'],
+      debut:['14h30','16h40'],
+      fin:['16h10','17h50'],
+      entractes:[30,'—'],
+      total:'3h20'
+    },
+    interventions:[
+      {label:'Après chaque représentation', texte:'Ramasser les confettis dorés le lendemain matin : trottoirs avant et arrière, puis vérifier les étages.'},
+      {label:'1er entracte', texte:'Ramasser les restes de journaux et de papiers.'}
+    ],
+    loges:[
+      {zone:'face-jardin', chaises:8},
+      {zone:'face-jardin', chaises:2},
+      {zone:'face-cour', chaises:16},
+      {zone:'face-cour', chaises:8}
+    ],
+    notes:'4 loges · 34 chaises. Laisser la place pour la voiture côté jardin et pour la moto côté cour.'
+  },
+  {
+    id:'hamlet', nom:'Hamlet', type:'Opéra', comp:'A. Thomas', saison:'2026-2027',
+    soiree:{
+      parties:['Partie 1','Partie 2'],
+      debut:['19h30','22h20'],
+      fin:['21h40','23h10'],
+      entractes:[40,'—'],
+      total:'3h40'
+    },
+    apresMidi:{
+      parties:['Partie 1','Partie 2'],
+      debut:['14h30','17h20'],
+      fin:['16h40','18h10'],
+      entractes:[40,'—'],
+      total:'3h40'
+    },
+    interventions:[
+      {label:'Mise', texte:"Passer de l'harlequin sur le sol dans les zones glissantes. La loge de 3 de l'ascenseur a été déplacée à la face."},
+      {label:'Entracte', texte:'Ramasser les filaments dorés à la main. Déplacer la loge jardin à la face.'},
+      {label:'Fin du spectacle', texte:'Avant les saluts, essuyer le sang et la cendre à la face avec une lavette et des chiffons.'}
+    ],
+    loges:[
+      {zone:'tournette', chaises:72, libelle:'72 hommes'},
+      {zone:'tournette', chaises:70, libelle:'70 femmes'},
+      {zone:'lointain-jardin', chaises:3},
+      {zone:'lointain-jardin', chaises:3},
+      {zone:'lointain-cour', chaises:12},
+      {zone:'lointain-cour', chaises:5},
+      {zone:'lointain-cour', chaises:4},
+      {zone:'lointain-cour', chaises:3},
+      {zone:'face-jardin', chaises:3}
+    ],
+    notes:'La loge jardin de 3 chaises doit être déplacée à la face à l’entracte.'
+  }
+];
+
+const EMPTY_GOUNOD = () => ({matin:'—',am:'—',soir:'—'});
+const SEED_WEEKS = [
+  {id:'s39',label:'S39',dates:'21–27 Septembre 2026',bastille:[
+    {jour:'Lun 21',matin:'SP CREP',am:'MISE HAML',soir:'R2 HAML'},
+    {jour:'Mar 22',matin:'MISE CREP',am:'SPC CREP',soir:'SPC CREP'},
+    {jour:'Mer 23',matin:'LUM CREP',am:'MISE BARB',soir:'R4 BARB'},
+    {jour:'Jeu 24',matin:'ITAC CREP',am:'MISE HAML',soir:'R3 HAML'},
+    {jour:'Ven 25',matin:'MISE CREP',am:'GENP CREP',soir:'GENP CREP'},
+    {jour:'Sam 26',matin:'LUM CREP',am:'MISE BARB',soir:'R5 BARB'},
+    {jour:'Dim 27',matin:'MISE HAML',am:'R4 HAML',soir:'MISE CREP'}
+  ],gounod:[EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD()],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['1524 CP / S','1524 CP / S','1524 CP / S','1524 CP / S','R CP / M','RH CP / M','RH CP / M'],h:'0.00'},
+    {nom:'WEBER Adrien',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'35.00'},
+    {nom:'BARRAGAN Maurane',jours:['816 CP / M','816 CP / M','816 CP / M','R CP / S','1524 CP / S','RH CP / S','RH CP / S'],h:'0.00'},
+    {nom:'GOUIN Pierre',jours:['R / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'28.00'},
+    {nom:'REITH Wilfrid',jours:['1524 / S','1524 / S','1524 / S','RH / S','RH / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'RINTO Romain',jours:['1524 / S','RH / S','RH / S','1524 / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'CRISTOFARI Valentina',jours:['816 denis','1524 CP','1524 CP','1524 CP','1524 CP','—','1019 Hamel'],h:'40.00'},
+    {nom:'NESI Valentina',jours:['1524 CP','1524 CP','—','1524 CP','1524 CP','—','—'],h:'32.00'}
+  ]},
+  {id:'s40',label:'S40',dates:'28 Septembre – 4 Octobre 2026',bastille:[
+    {jour:'Lun 28',matin:'SO CREP',am:'SO CREP',soir:'LUM CREP'},
+    {jour:'Mar 29',matin:'SOC CREP',am:'SOC CREP',soir:'LUM CREP'},
+    {jour:'Mer 30',matin:'SO CREP',am:'MISE HAML',soir:'R5 HAML'},
+    {jour:'Jeu 1',matin:'MISE BARB',am:'CORR BARB',soir:'R6 BARB'},
+    {jour:'Ven 2',matin:'MISE CREP',am:'LUM CREP',soir:'PGEN CREP'},
+    {jour:'Sam 3',matin:'LUM CREP',am:'MISE HAML',soir:'R6 HAML'},
+    {jour:'Dim 4',matin:'MISE BARB',am:'R7 BARB',soir:'MISE CREP'}
+  ],gounod:[
+    EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),
+    {matin:'—',am:'SP ORDU',soir:'SP ORDU'},
+    {matin:'—',am:'SP ORDU',soir:'SP ORDU'},
+    {matin:'—',am:'—',soir:'SP ORDU'}
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT CP','JT CP','JT CP','JT CP','JT CP','RH CP','RH CP'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
+    {nom:'WEBER Adrien',jours:['RH / M','816 / M','RH / M','1524 / S','1524 / S','1324 / S','1019 / S'],h:'41.00'},
+    {nom:'BARRAGAN Maurane',jours:['RH CP / S','1019 CP / S','1524 CP / S','RH CP / S','1524 CP / S','1324 CP / S','1019 CP / S'],h:'0.00'},
+    {nom:'GOUIN Pierre',jours:['1019 / S','RH / S','1524 / S','RH / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'REITH Wilfrid',jours:['1019 / S','1019 / S','1524 / S','R / S','R / M','RH / M','RH / M'],h:'24.00'},
+    {nom:'RINTO Romain',jours:['816 / M','R / M','816 / M','816 / M','816 / M','RH','RH'],h:'28.00'},
+    {nom:'CRISTOFARI Valentina',jours:['—','—','—','—','—','—','—'],h:'0.00'},
+    {nom:'NESI Valentina',jours:['—','1019 CP','1524 CP','1524 CP','1524 CP','1324 CP','—'],h:'42.00'}
+  ]},
+  {id:'s41',label:'S41',dates:'5–11 Octobre 2026',bastille:[
+    {jour:'Lun 5',matin:'LUM CREP',am:'LUM CREP',soir:'LTV CREP'},
+    {jour:'Mar 6',matin:'LTV CREP',am:'MISE HAML',soir:'R7 HAML'},
+    {jour:'Mer 7',matin:'MISE BARB',am:'CORR BARB',soir:'R8 BARB'},
+    {jour:'Jeu 8',matin:'MISE CREP',am:'LUM CREP',soir:'R1 CREP'},
+    {jour:'Ven 9',matin:'MISE HAML',am:'CORR HAML',soir:'R8 HAML'},
+    {jour:'Sam 10',matin:'MISE BARB',am:'MISE BARB',soir:'R9 BARB'},
+    {jour:'Dim 11',matin:'MISE CREP',am:'R2 CREP',soir:'MISE ORDU'}
+  ],gounod:[
+    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
+    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
+    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
+    EMPTY_GOUNOD(),
+    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
+    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 / M','816 / M','816 / M','1524 / S','1524 / S','RH / S','RH / S'],h:'37.00'},
+    {nom:'WEBER Adrien',jours:['RH / S','1524 / S','1524 / S','1524 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
+    {nom:'BARRAGAN Maurane',jours:['816 CP / M','816 CP / M','R CP / M','816 CP / M','816 CP / M','RH CP / M','RH CP / M'],h:'0.00'},
+    {nom:'GOUIN Pierre',jours:['1524 / S','1524 / S','R / S','R / S','R / M','RH / M','RH / M'],h:'16.00'},
+    {nom:'REITH Wilfrid',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
+    {nom:'RINTO Romain',jours:['1524 / S','RH / S','1524 / S','RH / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'NESI Valentina',jours:['1524 CP','1524 CP','—','1524 CP','—','1324 CP','1019 CP'],h:'42.00'},
+    {nom:'SCÉNIQUE 2',jours:['—','—','—','816 Crep','816 CP','—','—'],h:'14.00'}
+  ]},
+  {id:'s42',label:'S42',dates:'12–18 Octobre 2026',bastille:[
+    {jour:'Lun 12',matin:'TEC ORDU',am:'TEC ORDU',soir:'FIL ORDU'},
+    {jour:'Mar 13',matin:'LUM ORDU',am:'LUM ORDU',soir:'SP ORDU'},
+    {jour:'Mer 14',matin:'LUM ORDU',am:'GENP ORDU',soir:'LUM ORDU'},
+    {jour:'Jeu 15',matin:'SO ORDU',am:'SO ORDU',soir:'LUM ORDU'},
+    {jour:'Ven 16',matin:'LUM ORDU',am:'LUM ORDU',soir:'GEN ORDU'},
+    {jour:'Sam 17',matin:'TEC WALK',am:'TEC WALK',soir:'TEC WALK'},
+    {jour:'Dim 18',matin:'MISE CREP',am:'R3 CREP',soir:'MISE WALK'}
+  ],gounod:[
+    {matin:'—',am:'SP ORDU',soir:'SP ORDU'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['RH / S','1524 / S','1019 / S','1019 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
+    {nom:'WEBER Adrien',jours:['816 / M','R / M','R / M','816 / M','816 / M','RH / M','RH / M'],h:'21.00'},
+    {nom:'BARRAGAN Maurane',jours:['RH / S','1524 / S','1019 / S','1019 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
+    {nom:'GOUIN Pierre',jours:['R / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'28.00'},
+    {nom:'REITH Wilfrid',jours:['RH / M','816 / M','816 / M','1019 / S','1524 / S','RH / S','1019 / S'],h:'38.00'},
+    {nom:'RINTO Romain',jours:['R CP / S','1524 CP / S','1524 CP / S','1524 CP / S','816 CP / M','RH CP / M','RH CP / M'],h:'0.00'},
+    {nom:'SCÉNIQUE 1',jours:['816 CP','1524','1019 CP','—','—','—','—'],h:'23.00'}
+  ]},
+  {id:'s43',label:'S43',dates:'19–25 Octobre 2026',bastille:[
+    {jour:'Lun 19',matin:'LUM WALK',am:'FIL WALK',soir:'LUM WALK'},
+    {jour:'Mar 20',matin:'LUM WALK',am:'SP WALK',soir:'SP WALK'},
+    {jour:'Mer 21',matin:'LUM WALK',am:'GENP WALK',soir:'GENP WALK'},
+    {jour:'Jeu 22',matin:'MISE BARB',am:'SP BARB',soir:'SP BARB'},
+    {jour:'Ven 23',matin:'MISE WALK',am:'SO WALK',soir:'SP WALK'},
+    {jour:'Sam 24',matin:'LUM WALK',am:'MISE BARB',soir:'R10 BARB'},
+    {jour:'Dim 25',matin:'MISE WALK',am:'LUM WALK',soir:'LUM WALK'}
+  ],gounod:[
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
+    {matin:'—',am:'SP TURA',soir:'SP TURA'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['R / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'28.00'},
+    {nom:'WEBER Adrien',jours:['RH / S','1524 / S','1524 / S','1524 / S','1524 / S','1324 / S','RH / S'],h:'42.00'},
+    {nom:'BARRAGAN Maurane',jours:['R / S','1524 / S','1524 / S','R / S','816 / M','RH / M','RH / M'],h:'23.00'},
+    {nom:'GOUIN Pierre',jours:['816 / M','816 / M','816 / M','1524 / S','1524 / S','RH / S','RH / S'],h:'37.00'},
+    {nom:'REITH Wilfrid',jours:['RH / S','R / S','R / S','R / S','R / S','1324 / S','RH / S'],h:'10.00'},
+    {nom:'RINTO Romain',jours:['816 CP / M','816 CP / M','816 CP / M','816 CP / M','816 CP / M','RH CP / M','RH CP / M'],h:'0.00'},
+    {nom:'DOMENICI Alessandra',jours:['816 CP','—','—','—','—','—','—'],h:'0.00'},
+    {nom:'SCÉNIQUE 1',jours:['—','—','—','816 CP','—','—','—'],h:'7.00'}
+  ]},
+  {id:'s44',label:'S44',dates:'26 Octobre – 1er Novembre 2026',bastille:[
+    {jour:'Lun 26',matin:'LTV WALK',am:'GEN WALK',soir:'TEC SIEG'},
+    {jour:'Mar 27',matin:'TEC SIEG',am:'TEC SIEG',soir:'TEC SIEG'},
+    {jour:'Mer 28',matin:'LUM SIEG',am:'MISE BARB',soir:'R11 BARB'},
+    {jour:'Jeu 29',matin:'MISE SIEG',am:'FIL SIEG',soir:'SP SIEG'},
+    {jour:'Ven 30',matin:'LUM SIEG',am:'LUM SIEG',soir:'SP SIEG'},
+    {jour:'Sam 31',matin:'LUM SIEG',am:'GENP SIEG',soir:'GENP SIEG'},
+    {jour:'Dim 1',matin:'MISE BARB',am:'R12 BARB',soir:'MISE SIEG'}
+  ],gounod:[
+    {matin:'—',am:'SP TURA',soir:'SP TURA'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','JF'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['1019 / S','RH / S','RH / S','1524 / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'WEBER Adrien',jours:['1019 / S','RH / S','1524 / S','R / S','816 / M','RH / M','JF / M'],h:'23.00'},
+    {nom:'BARRAGAN Maurane',jours:['RH / M','816 / M','816 / M','816 / M','816 / M','RH / M','JF / M'],h:'28.00'},
+    {nom:'GOUIN Pierre',jours:['RH / S','RH / S','1524 / S','1524 / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
+    {nom:'REITH Wilfrid',jours:['816 / M','816 / M','816 / M','816 / M','RH / M','RH','JF'],h:'28.00'},
+    {nom:'RINTO Romain',jours:['816 CP / M','816 CP / M','816 RCC / M','1524 RCC / S','1524 RCC / S','RH RCC / S','JF / S'],h:'21.00'},
+    {nom:'DOMENICI Alessandra',jours:['816 CP','—','—','—','—','—','—'],h:'7.00'}
+  ]}
+];
+
 // ── DATA ACCESS ──
 function getOperas() {
   const deleted = DB.get('deleted_operas') || [];
@@ -387,7 +738,7 @@ function getWeeks() {
   const custom = DB.get('custom_weeks') || [];
   const seeds = SEED_WEEKS.filter(w => !deleted.includes(w.id));
   const all = [...seeds, ...custom];
-  all.sort((a,b) => (a.startISO || '9999').localeCompare(b.startISO || '9999') || a.label.localeCompare(b.label));
+  all.sort((a,b) => parseInt(a.label.replace(/\D/g,'')) - parseInt(b.label.replace(/\D/g,'')));
   return all;
 }
 
@@ -412,46 +763,123 @@ function showScreen(name) {
   window.scrollTo(0,0);
 }
 
-function hasHoraire(val) {
-  if (!val || val==='—') return false;
-  const first=val.trim().toUpperCase().split(/[\s/]+/)[0];
-  if (['RH','R','JT','JF','CP','RCC'].includes(first)) return false;
-  if (/\b(CP|RCC)\b/i.test(val)) return false;
-  return /^(?:816|1019|1524|1324|\d{1,2}H\d{1,2})\b/.test(first);
+function extractHoraire(val) {
+  const match = String(val || '').match(/(?:^|\s)(\d{3,4})(?:\s|$|\/)/);
+  if (!match) return null;
+  const code = match[1];
+  const split = code.length === 3 ? 1 : 2;
+  return {debut:parseInt(code.slice(0,split),10), fin:parseInt(code.slice(split),10)};
 }
 
-const SALLES = [{key:'scene',label:'Scène B'},{key:'gounod',label:'Gounod'},{key:'amphi',label:'Amphi'}];
-function salleData(day,salle) { return salle.key === 'scene' ? day : (day[salle.key]||{}); }
-function showProgramme(day, compact=false) {
-  const slots = [{key:'matin',label:'Matin'},{key:'am',label:'Après-midi'},{key:'soir',label:'Soir'}];
-  const html = SALLES.map(salle => {
-    const d = salleData(day,salle);
-    if(slots.every(s=>!d[s.key] || d[s.key]==='—')) return '';
-    return `<div style="margin:10px 0 6px;font-size:10px;color:var(--gold);font-weight:600;letter-spacing:.07em">${salle.label}</div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      ${slots.map((s,i)=>{
-        const value=d[s.key]||'—';
-        const t=d[s.key+'Type']||'rep';
-        const color=t==='opera'?'var(--gold-l)':'var(--text2)';
-        return `<div style="display:grid;grid-template-columns:82px 1fr;align-items:center;padding:6px 12px;${i<2?'border-bottom:1px solid var(--border);':''}"><span style="color:var(--text3);font-size:10px">${s.label}</span><span style="color:${color};font-size:12px;font-weight:500">${value}</span></div>`;
-      }).join('')}</div>`;
-  }).filter(Boolean).join('');
-  return html || '<div style="font-size:12px;color:var(--text3);padding:6px 0">Aucune activité indiquée.</div>';
+function hasHoraire(nom, val) {
+  if (!val || val === '—') return false;
+  if (!extractHoraire(val)) return false;
+  const isValentina = nom === 'NESI Valentina' || nom === 'CRISTOFARI Valentina';
+  if (isValentina) return true;
+  return !/\b(?:CP|RCC)\b/i.test(val);
 }
-function buildDayBlock(label, dateStr, bastille, dispositif, dayIndex, isToday) {
+
+function formatHoraire(val) {
+  const h = extractHoraire(val);
+  return h ? h.debut + ' h–' + h.fin + ' h' : val;
+}
+
+function buildDayBlockLegacy(label, dateStr, bastille, dispositif, dayIndex, isToday) {
   if (!bastille || dayIndex < 0 || dayIndex >= bastille.length) return '';
   const day = bastille[dayIndex];
-  const equipe = (dispositif||[])
-    .filter(p => p.nom !== 'MANSIOT Denis' && hasHoraire(p.jours?.[dayIndex]))
+  const slots = [
+    {label:'Matin', val:day.matin, type:day.matinType},
+    {label:'Après-midi', val:day.am, type:day.amType},
+    {label:'Soir', val:day.soir, type:day.soirType},
+  ];
+  const equipe = dispositif
+    .filter(p => p.nom !== 'MANSIOT Denis' && hasHoraire(p.jours[dayIndex]))
     .map(p => ({nom:p.nom, horaire:p.jours[dayIndex]}));
-  return `<div style="margin:0 0 20px">
-    <div style="font-size:11px;font-weight:600;color:${isToday?'var(--gold)':'var(--text2)'};text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px">${label}${isToday?'':' — Demain'}</div>
-    ${showProgramme(day)}
-    ${day.note?`<div class="ib" style="margin-top:8px;font-size:12px;color:var(--gold)">${day.note}</div>`:''}
-    <div style="font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin:15px 0 7px">Équipe présente</div>
-    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden">
-      ${equipe.length===0?'<div style="padding:12px;color:var(--text3)">Aucun technicien affecté.</div>':equipe.map((p,i)=>`<div style="display:flex;gap:8px;justify-content:space-between;align-items:center;padding:9px 12px;${i<equipe.length-1?'border-bottom:1px solid var(--border);':''}"><span>${p.nom}</span><span style="white-space:nowrap;color:var(--gold-l)">${p.horaire}</span></div>`).join('')}
-    </div></div>`;
+
+  const accentColor = isToday ? 'var(--gold)' : 'var(--text3)';
+  const labelColor = isToday ? 'var(--gold)' : 'var(--text3)';
+
+  return `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;margin-top:${isToday?'0':'20px'}">
+      <div style="width:3px;height:14px;background:${accentColor};border-radius:2px"></div>
+      <span style="font-size:11px;font-weight:600;color:${labelColor};text-transform:uppercase;letter-spacing:.07em">${label}${isToday ? '' : ' — Demain'}</span>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:8px">
+      <div style="display:grid;grid-template-columns:72px 1fr">
+        ${slots.map((s,i) => {
+          const isEmpty = !s.val || s.val === '—';
+          const bg = isEmpty ? 'transparent' : s.type==='opera'?'rgba(201,168,76,.12)':s.type==='ballet'?'rgba(76,170,170,.1)':'rgba(90,87,80,.08)';
+          const cls = isEmpty ? '' : s.type==='opera'?'t-opera':s.type==='ballet'?'t-ballet':'t-rep';
+          const border = i<2 ? 'border-bottom:1px solid rgba(201,168,76,.05)' : '';
+          return `
+            <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;padding:8px 12px;${border};display:flex;align-items:center">${s.label}</div>
+            <div style="padding:6px 12px;${border};display:flex;align-items:center">
+              <span style="font-size:12px;font-weight:600;padding:3px 8px;border-radius:5px;background:${bg}" class="${cls}">${isEmpty ? '—' : s.val}</span>
+            </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:4px">
+      ${equipe.length === 0
+        ? `<div style="padding:12px 14px;color:var(--text3);font-size:12px">Aucune personne affectée</div>`
+        : equipe.map((p,i) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 14px;${i<equipe.length-1?'border-bottom:1px solid rgba(201,168,76,.05)':''}">
+            <div style="font-size:12px;font-weight:500;color:var(--text)">${p.nom}</div>
+            <div style="font-size:11px;color:var(--gold-d);font-weight:600;background:rgba(201,168,76,.1);padding:2px 9px;border-radius:20px">${p.horaire}</div>
+          </div>`).join('')
+      }
+    </div>`;
+}
+
+function renderSalleProgramme(titre, day, accent) {
+  const data = day || {matin:'—',am:'—',soir:'—'};
+  const slots = [
+    {label:'Matin', val:data.matin},
+    {label:'Après-midi', val:data.am},
+    {label:'Soir', val:data.soir}
+  ];
+  return '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:8px">' +
+    '<div style="padding:8px 12px;border-bottom:1px solid var(--border);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:' + accent + '">' + titre + '</div>' +
+    '<div style="display:grid;grid-template-columns:82px 1fr">' +
+      slots.map(function(s,i) {
+        const border = i < 2 ? 'border-bottom:1px solid rgba(201,168,76,.05);' : '';
+        const color = s.val && s.val !== '—' ? 'var(--text)' : 'var(--text3)';
+        return '<div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;padding:8px 12px;' + border + '">' + s.label + '</div>' +
+          '<div style="font-size:12px;font-weight:600;padding:8px 12px;color:' + color + ';' + border + '">' + (s.val || '—') + '</div>';
+      }).join('') +
+    '</div></div>';
+}
+
+function buildDayBlock(label, bastille, gounod, dispositif, dayIndex, isToday) {
+  if (!bastille || dayIndex < 0 || dayIndex >= bastille.length) return '';
+  const equipe = dispositif
+    .filter(function(p) {
+      return p.nom !== 'MANSIOT Denis' &&
+        !/^SC[ÉE]NIQUE\s/i.test(p.nom) &&
+        hasHoraire(p.nom, p.jours[dayIndex]);
+    })
+    .map(function(p) {
+      return {nom:p.nom, horaire:formatHoraire(p.jours[dayIndex])};
+    });
+  const accentColor = isToday ? 'var(--gold)' : 'var(--text3)';
+  const title = label + (isToday ? '' : ' — Demain');
+  const rows = equipe.length === 0
+    ? '<div style="padding:12px 14px;color:var(--text3);font-size:12px">Aucun technicien présent</div>'
+    : equipe.map(function(p,i) {
+        const border = i < equipe.length-1 ? 'border-bottom:1px solid rgba(201,168,76,.05)' : '';
+        return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 14px;' + border + '">' +
+          '<div style="font-size:12px;font-weight:500;color:var(--text)">' + p.nom + '</div>' +
+          '<div style="font-size:11px;color:var(--gold-d);font-weight:600;background:rgba(201,168,76,.1);padding:2px 9px;border-radius:20px">' + p.horaire + '</div>' +
+        '</div>';
+      }).join('');
+  return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;margin-top:' + (isToday?'0':'20px') + '">' +
+      '<div style="width:3px;height:14px;background:' + accentColor + ';border-radius:2px"></div>' +
+      '<span style="font-size:11px;font-weight:600;color:' + accentColor + ';text-transform:uppercase;letter-spacing:.07em">' + title + '</span>' +
+    '</div>' +
+    renderSalleProgramme('Scène principale · Scène B', bastille[dayIndex], 'var(--gold)') +
+    renderSalleProgramme('Salle Gounod', (gounod||[])[dayIndex], 'var(--teal)') +
+    '<div style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-d);margin:12px 2px 6px">Techniciens présents</div>' +
+    '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:4px">' + rows + '</div>';
 }
 
 function renderAujourdhui() {
@@ -462,10 +890,12 @@ function renderAujourdhui() {
 
   function dateLabel(d) { return `${jours[d.getDay()]} ${d.getDate()} ${mois[d.getMonth()]}`; }
   function findDay(d) {
-    const iso = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const j = jours[d.getDay()], num = d.getDate();
     for (const w of getWeeks()) {
-      const idx = (w.bastille||[]).findIndex(day => day.dateISO === iso);
-      if (idx >= 0) return {week:w, idx};
+      for (let i = 0; i < w.bastille.length; i++) {
+        const parts = w.bastille[i].jour.split(' ');
+        if (parts[0] === j && parseInt(parts[1]) === num) return {week:w, idx:i};
+      }
     }
     return null;
   }
@@ -481,8 +911,8 @@ function renderAujourdhui() {
   }
 
   el.innerHTML = `<div style="padding:4px 0">
-    ${todayFound ? buildDayBlock(dateLabel(today), today, todayFound.week.bastille, todayFound.week.dispositif, todayFound.idx, true) : ''}
-    ${tomorrowFound ? buildDayBlock(dateLabel(tomorrow), tomorrow, tomorrowFound.week.bastille, tomorrowFound.week.dispositif, tomorrowFound.idx, false) : ''}
+    ${todayFound ? buildDayBlock(dateLabel(today), todayFound.week.bastille, todayFound.week.gounod, todayFound.week.dispositif, todayFound.idx, true) : ''}
+    ${tomorrowFound ? buildDayBlock(dateLabel(tomorrow), tomorrowFound.week.bastille, tomorrowFound.week.gounod, tomorrowFound.week.dispositif, tomorrowFound.idx, false) : ''}
   </div>`;
 }
 
@@ -503,23 +933,35 @@ function renderConduites() {
 }
 
 function showDetail(id) {
-  const op = getOperas().find(o=>o.id===id);
+  const op = getOperas().find(o => o.id === id);
   if (!op) return;
+
   document.getElementById('detail-content').innerHTML = `
-    <div class="detail-title">${op.nom}</div><div class="detail-meta">${op.type} · ${op.saison}</div>
-    <div class="ib"><div class="ib-title">Horaires soirée</div>${renderHoraires(op.soiree)}</div>
-    ${op.apresMidi?`<div class="ib"><div class="ib-title">Horaires après-midi</div>${renderHoraires(op.apresMidi)}</div>`:''}
-    <div class="ib"><div class="ib-title">Interventions</div>${(op.interventions||[]).map(i=>`<div class="intv"><div class="intv-label">${i.label}</div><div class="intv-text">${i.texte||'—'}</div></div>`).join('')}</div>
-    <div class="ib"><div class="ib-title">Placement des loges</div>${renderLogesSchema(op)}</div>
-    ${op.notes?`<div class="ib"><div class="ib-title">Notes</div><div class="intv-text">${op.notes}</div></div>`:''}`;
+    <div class="detail-title">${op.nom}</div>
+    <div class="detail-meta">${op.type} · ${op.comp}</div>
+    <div class="ib">
+      <div class="ib-title">Horaires soirée</div>
+      ${renderHoraires(op.soiree)}
+    </div>
+    ${op.apresMidi ? `<div class="ib">
+      <div class="ib-title">Horaires après-midi</div>
+      ${renderHoraires(op.apresMidi)}
+    </div>` : ''}
+    <div class="ib">
+      <div class="ib-title">Interventions</div>
+      ${(op.interventions||[]).map(i=>`<div class="intv"><div class="intv-label">${i.label}</div><div class="intv-text${i.texte==='—'?' intv-empty':''}">${i.texte||'—'}</div></div>`).join('')}
+    </div>
+    <div class="ib">
+      <div class="ib-title">Placement des loges</div>
+      ${renderLogesSchema(op)}
+    </div>
+    ${op.notes ? `<div class="ib"><div class="ib-title">À retenir</div><div class="intv-text">${op.notes}</div></div>` : ''}
+  `;
   showScreen('detail');
   currentDetailId = id;
 }
 
 function renderLogesSchema(op) {
-  if(op.schemaHtml) return op.schemaHtml;
-  const uploaded = op.schemaKey ? SCHEMAS[op.schemaKey] : DB.get('schema_'+op.id);
-  if(uploaded) return `<div class="img-viewer-wrap"><img class="loge-img" id="loge-img" alt="Schéma de placement" src="${uploaded}" onclick="openFs('${op.id}')" style="touch-action:pan-y"/><div class="img-controls"><button class="img-ctrl-btn" onclick="openFs('${op.id}')">Agrandir / zoomer</button></div></div>`;
   const loges = op.loges || [];
   if (!loges.length) return '<div style="padding:20px;text-align:center;color:var(--text3);font-size:12px">Aucun placement défini</div>';
 
@@ -565,9 +1007,20 @@ function renderLogesSchema(op) {
       const x = z.x + i * w;
       const size = w >= 40 ? 11 : 10;
       parts.push(logeRect(x, z.y, w, z.h));
-      parts.push(logeText(x + w/2, z.y + z.h/2 + size*0.35, size, l.chaises));
+      parts.push(logeText(x + w/2, z.y + z.h/2 + size*0.35, size, l.libelle || l.chaises));
     });
   });
+
+  if (byZone['tournette']) {
+    const z = {x:140, y:50, w:80, h:35};
+    const n = byZone['tournette'].length;
+    const h = z.h / n;
+    byZone['tournette'].forEach((l, i) => {
+      const y = z.y + i * h;
+      parts.push(logeRect(z.x, y, z.w, h));
+      parts.push(logeText(z.x + z.w/2, y + h/2 + 3, 8, l.libelle || l.chaises));
+    });
+  }
 
   Object.keys(ascZones).forEach(zk => {
     if (!byZone[zk]) return;
@@ -589,7 +1042,7 @@ function renderLogesSchema(op) {
       <text x="290" y="52" text-anchor="middle" font-size="9" fill="rgba(232,228,216,0.32)" font-family="DM Sans,sans-serif">CASE ARRIÈRE</text>
       <rect x="130" y="10" width="100" height="35" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
       <rect x="140" y="50" width="80" height="35" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.3)" stroke-width="1" rx="3"/>
-      <text x="180" y="72" text-anchor="middle" font-size="9" font-weight="500" fill="#c9a84c" font-family="DM Sans,sans-serif">TOURNETTE</text>
+      ${byZone['tournette'] ? '' : '<text x="180" y="72" text-anchor="middle" font-size="9" font-weight="500" fill="#c9a84c" font-family="DM Sans,sans-serif">TOURNETTE</text>'}
       <rect x="15" y="90" width="110" height="14" fill="rgba(90,170,106,0.08)" stroke="rgba(90,170,106,0.4)" stroke-width="1" rx="2"/>
       ${zoneLabel('lointain-jardin', 70, 100, 9, 'rgba(90,170,106,0.6)')}
       <rect x="235" y="90" width="110" height="14" fill="rgba(90,170,106,0.08)" stroke="rgba(90,170,106,0.4)" stroke-width="1" rx="2"/>
@@ -621,7 +1074,7 @@ function renderHoraires(h) {
     <div></div>${h.parties.map(p=>`<div class="hh">${p}</div>`).join('')}
     <div class="hl">Début</div>${h.debut.map(v=>`<div class="hv">${v}</div>`).join('')}
     <div class="hl">Fin</div>${h.fin.map(v=>`<div class="hv">${v}</div>`).join('')}
-    <div class="hl">Entracte</div>${h.entractes.map(v=>`<div class="hv" style="font-size:11px;color:var(--text2)">${v==='—'?'—':v+' min'}</div>`).join('')}
+    <div class="hl">Entracte</div>${h.entractes.map(v=>`<div class="hv" style="font-size:11px;color:var(--text2)">${v==='—'?'—':v+'min'}</div>`).join('')}
     <div class="hl htotal">Total</div>
     <div class="hv htotal" style="grid-column:2/span ${n}">${h.total}</div>
   </div>`;
@@ -702,10 +1155,7 @@ function applyFsZoom() {
 let currentWeekId = null;
 function renderWeekTabs() {
   const weeks = getWeeks();
-  if (weeks.length && !weeks.some(w=>w.id===currentWeekId)) {
-    const todayISO=new Date().toLocaleDateString('en-CA',{timeZone:'Europe/Paris'});
-    currentWeekId=(weeks.find(w=>todayISO>=w.startISO && todayISO<=w.bastille[6].dateISO)||weeks[0]).id;
-  }
+  if(!currentWeekId && weeks.length) currentWeekId = weeks[0].id;
   document.getElementById('week-tabs').innerHTML = weeks.map(w=>`
     <button class="wbtn ${w.id===currentWeekId?'active':''}" onclick="selWeek('${w.id}',this)">
       ${w.label}<span style="font-size:9px;opacity:.7;display:block;margin-top:1px">${w.dates}</span>
@@ -718,27 +1168,121 @@ function selWeek(id, btn) {
   renderPlanningContent();
 }
 function renderPlanning() { renderWeekTabs(); renderPlanningContent(); }
-function renderPlanningContent() {
+function renderPlanningContentLegacy() {
   const weeks = getWeeks();
   const w = weeks.find(x=>x.id===currentWeekId) || weeks[0];
-  if(!w){document.getElementById('planning-content').innerHTML='<div style="padding:30px;color:var(--text3)">Aucune semaine disponible</div>';return;}
+  if(!w){document.getElementById('planning-content').innerHTML='<div style="text-align:center;padding:40px;color:var(--text3)">Aucune semaine disponible</div>';return;}
   const dayAbbr = w.bastille.map(d=>d.jour.split(' ')[0]);
   const dayNum = w.bastille.map(d=>d.jour.split(' ')[1]||'');
-  document.getElementById('planning-content').innerHTML = `
-    <div class="psection"><div class="psection-title">Programme de la semaine</div>
-      ${w.bastille.map(day=>`<div class="ib" style="padding:10px 12px;margin-bottom:9px"><div style="font-size:12px;color:var(--gold-l);font-weight:600">${day.jour}${day.note?' · '+day.note:''}</div>${showProgramme(day,true)}</div>`).join('')}
+  document.getElementById('planning-content').innerHTML=`
+    <div class="psection">
+      <div class="psection-title">Scène B — Programme de la semaine</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:52px 1fr 1fr 1fr;gap:0;border-bottom:1px solid rgba(201,168,76,.12);padding:6px 12px">
+          <div></div>
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold-d);text-align:center">Matin</div>
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold-d);text-align:center">Après-midi</div>
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold-d);text-align:center">Soir</div>
+        </div>
+        ${w.bastille.map(d=>`
+          <div style="display:grid;grid-template-columns:52px 1fr 1fr 1fr;gap:0;border-bottom:1px solid rgba(201,168,76,.05);padding:7px 12px;align-items:center">
+            <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em">${d.jour}</div>
+            ${['matin','am','soir'].map(slot=>{
+              const val = d[slot] || '—';
+              const t = d[slot+'Type'] || 'rep';
+              let cls = t==='opera'?'t-opera':t==='ballet'?'t-ballet':'t-rep';
+              let bg = t==='opera'?'rgba(201,168,76,.1)':t==='ballet'?'rgba(76,170,170,.1)':'rgba(90,87,80,.08)';
+              if(val==='—') { bg='transparent'; cls=''; }
+              return `<div style="font-size:11px;font-weight:500;padding:3px 5px;border-radius:5px;background:${bg};text-align:center;margin:0 3px" class="${cls}">${val}</div>`;
+            }).join('')}
+          </div>`).join('')}
+      </div>
     </div>
-    <div class="psection"><div class="psection-title">Dispositif Scénique 2.0</div><div class="tscroll"><table class="dtable">
-      <thead><tr><th>Technicien</th>${dayAbbr.map((d,i)=>`<th>${d}<span style="display:block;font-size:8px;color:var(--text3)">${dayNum[i]}</span></th>`).join('')}<th>H</th></tr></thead>
-      <tbody>${w.dispositif.map(p=>`<tr><td class="name-cell">${p.nom}</td>${p.jours.map(j=>{
-        const u=(j||'').toUpperCase();let cls='c-code';
-        if(u.startsWith('JT')||u.startsWith('JF'))cls='c-jt';
-        else if(u.startsWith('RH')||u.startsWith('R /')||u.startsWith('R CP'))cls='c-rh';
-        else if(j==='—')cls='c-off';
-        return `<td class="${cls}">${j}</td>`;
-      }).join('')}<td style="text-align:right;color:var(--text3);font-size:10px">${p.h}</td></tr>`).join('')}</tbody></table></div>
-      <div class="legend"><span><span style="color:var(--teal)">■</span> JT/JF = journée</span><span><span style="color:var(--gold)">■</span> RH / R = repos</span><span>816 = 8h–16h</span><span>1524 = 15h–24h</span><span>CP = congé payé</span></div>
+    <div class="psection">
+      <div class="psection-title">Dispositif Scénique 2.0</div>
+      <div class="tscroll">
+        <table class="dtable">
+          <thead><tr><th>Technicien</th>${dayAbbr.map((d,i)=>`<th>${d}${dayNum[i]?`<span style="display:block;font-size:8px;color:var(--text3);font-weight:400;margin-top:1px;letter-spacing:0">${dayNum[i]}</span>`:''}</th>`).join('')}<th>H</th></tr></thead>
+          <tbody>
+            ${w.dispositif.map(p=>`<tr>
+              <td class="name-cell">${p.nom}</td>
+              ${p.jours.map(j=>{
+                const u=j.toUpperCase();
+                let cls='c-code';
+                if(u==='JT'||u==='JF')cls='c-jt';
+                else if(u==='RH')cls='c-rh';
+                else if(j==='—')cls='c-off';
+                return `<td class="${cls}">${j}</td>`;
+              }).join('')}
+              <td style="text-align:right;color:var(--text3);font-size:10px">${p.h}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div class="legend">
+        <span><span style="color:var(--teal)">■</span> JT/JF = Journée travail</span>
+        <span><span style="color:var(--gold)">■</span> RH = Repos hebdo.</span>
+        <span>1524 = 15h→24h</span>
+      </div>
     </div>`;
+}
+
+function planningDayHeader(day) {
+  const parts = (day.jour || '').split(' ');
+  const slots = [
+    ['Matin',day.matin || '—'],
+    ['Après-midi',day.am || '—'],
+    ['Soir',day.soir || '—']
+  ];
+  return '<div style="min-width:88px">' +
+    '<div style="font-size:10px;color:var(--gold);font-weight:700;margin-bottom:5px">' + parts[0] +
+      (parts[1] ? '<span style="display:block;font-size:9px;color:var(--text2);font-weight:500">' + parts[1] + '</span>' : '') +
+    '</div>' +
+    slots.map(function(slot) {
+      const muted = slot[1] === '—' ? 'color:var(--text3);font-weight:400;' : 'color:var(--text);font-weight:600;';
+      return '<div style="border-top:1px solid rgba(201,168,76,.08);padding:3px 1px;text-align:left">' +
+        '<span style="display:block;font-size:7px;color:var(--gold-d);letter-spacing:.04em">' + slot[0] + '</span>' +
+        '<span style="display:block;font-size:8px;line-height:1.25;white-space:normal;' + muted + '">' + slot[1] + '</span>' +
+      '</div>';
+    }).join('') +
+  '</div>';
+}
+
+function renderPlanningContent() {
+  const weeks = getWeeks();
+  const w = weeks.find(function(x){ return x.id === currentWeekId; }) || weeks[0];
+  const target = document.getElementById('planning-content');
+  if (!w) {
+    target.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3)">Aucune semaine disponible</div>';
+    return;
+  }
+  const rows = (w.dispositif || []).map(function(p) {
+    return '<tr><td class="name-cell">' + p.nom + '</td>' +
+      p.jours.map(function(j) {
+        const u = String(j || '').toUpperCase();
+        let cls = 'c-code';
+        if (u === 'JT' || u === 'JF') cls = 'c-jt';
+        else if (u === 'RH') cls = 'c-rh';
+        else if (!j || j === '—') cls = 'c-off';
+        return '<td class="' + cls + '">' + (j || '—') + '</td>';
+      }).join('') +
+      '<td style="text-align:right;color:var(--text3);font-size:10px">' + (p.h || '—') + '</td></tr>';
+  }).join('');
+  target.innerHTML =
+    '<div class="psection">' +
+      '<div class="psection-title">Dispositif Scénique 2.0 · programme Scène B dans les dates</div>' +
+      '<div class="tscroll"><table class="dtable" style="min-width:930px">' +
+        '<thead><tr><th>Technicien</th>' +
+          w.bastille.map(function(day){ return '<th>' + planningDayHeader(day) + '</th>'; }).join('') +
+          '<th>H</th></tr></thead>' +
+        '<tbody>' + rows + '</tbody>' +
+      '</table></div>' +
+      '<div class="legend">' +
+        '<span><span style="color:var(--teal)">■</span> JT/JF = Journée travail</span>' +
+        '<span><span style="color:var(--gold)">■</span> RH = Repos hebdo.</span>' +
+        '<span>1524 = 15h→24h</span>' +
+      '</div>' +
+    '</div>';
 }
 
 // ── ADMIN ──
@@ -890,12 +1434,9 @@ function saveWeek() {
   const jours=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
   const bastille = jours.map((j,i)=>({
     jour:j+' '+(i+1),
-    dateISO:'',
-    matin:'—', matinType:'rep',
-    am:document.getElementById(`bd-show-${i}`)?.value||'—',
-    amType:'rep',
-    soir:document.getElementById(`bd-h-${i}`)?.value||'—',
-    soirType:document.getElementById(`bd-type-${i}`)?.value||'rep'
+    show:document.getElementById(`bd-show-${i}`)?.value||'—',
+    type:document.getElementById(`bd-type-${i}`)?.value||'rep',
+    heure:document.getElementById(`bd-h-${i}`)?.value||''
   }));
   const dispositif=[];
   for(let i=0;i<techCount;i++){
@@ -905,7 +1446,7 @@ function saveWeek() {
     }
   }
   const custom=DB.get('custom_weeks')||[];
-  custom.push({id:'w-'+Date.now(),label,dates,startISO:'',bastille,dispositif});
+  custom.push({id:'w-'+Date.now(),label,dates,bastille,dispositif});
   DB.set('custom_weeks',custom);
   currentWeekId=custom[custom.length-1].id;
   toast('Semaine '+label+' enregistrée !');
@@ -990,7 +1531,7 @@ function renderIndividuel() {
   // Collect all unique tech names (excluding MANSIOT Denis)
   const namesSet = new Set();
   const ALLOWED = ['BARRAGAN Maurane','REITH Wilfrid','RINTO Romain','GOUIN Pierre','FOUGERAY Franck','WEBER Adrien'];
-  const names = [...ALLOWED, ...[...new Set(weeks.flatMap(w=>(w.dispositif||[]).map(p=>p.nom)))].filter(n=>n==='CRISTOFARI Valentina')];
+  const names = ALLOWED;
 
   // Store names in array for safe index-based onclick
   window._techNames = names;
