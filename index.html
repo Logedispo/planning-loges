@@ -6,10 +6,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#09090f">
-<title>Loges — Opéra Bastille</title>
+<title>Dispositif scénique — Opéra Bastille</title>
 <link rel="manifest" href="manifest.json">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root{--gold:#c9a84c;--gold-l:#e8c97a;--gold-d:#6a5628;--bg:#09090f;--bg2:#101018;--bg3:#181820;--bg4:#20202c;--border:rgba(201,168,76,.15);--border2:rgba(201,168,76,.28);--text:#e8e4d8;--text2:#9e9a8c;--text3:#5a5750;--teal:#4caaaa;--red:#c05050;--green:#5aaa6a;--nav:74px;--safe:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}body{min-height:100%;overscroll-behavior-y:none}
@@ -148,19 +148,262 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);pad
 .remove-btn{background:none;border:1px solid var(--border);border-radius:7px;color:var(--text3);padding:6px 9px;cursor:pointer;flex-shrink:0}
 
 @media(min-width:600px){.screen,.detail-screen{max-width:560px;margin:0 auto}}
+
+/* ── INTERFACE MODERNE 2026 ── */
+:root{
+  --navy:#071e34;
+  --navy2:#0b2945;
+  --blue:#1769e8;
+  --blue-soft:#eaf2ff;
+  --purple:#6b25d5;
+  --purple-soft:#f1eaff;
+  --green:#078b4d;
+  --green-soft:#e8f7ef;
+  --orange:#e66b18;
+  --gold:var(--blue);
+  --gold-l:#4388f4;
+  --gold-d:#245fac;
+  --bg:#edf3f7;
+  --bg2:#f6f9fb;
+  --bg3:#ffffff;
+  --bg4:#eef3f7;
+  --border:#dce5ed;
+  --border2:#c8d5e1;
+  --text:#0a1b38;
+  --text2:#53647a;
+  --text3:#7d8b9e;
+  --teal:var(--purple);
+  --red:#c94747;
+  --nav:72px;
+}
+html{background:var(--navy)}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  letter-spacing:-.01em;
+}
+.app-header{
+  min-height:86px;
+  padding:14px 16px;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-bottom:none;
+  box-shadow:0 4px 18px rgba(4,23,41,.18);
+}
+.brand-wrap{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.brand-mark{width:48px;height:42px;flex:0 0 auto;color:#dcecff}
+.brand-copy{min-width:0}
+.header-logo{
+  font-family:'Inter',sans-serif;
+  font-size:18px;
+  line-height:1.15;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-.025em;
+}
+.header-sub{
+  margin-top:4px;
+  font-size:9px;
+  color:#a9bddd;
+  font-weight:600;
+  letter-spacing:.25em;
+}
+.admin-btn{
+  width:42px;height:42px;padding:0;border-radius:13px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.07);
+  color:#d9e7f5;font-size:0;
+}
+.admin-btn::before{content:'⚙';font-size:19px}
+.bottom-nav{
+  height:calc(var(--nav) + var(--safe));
+  background:var(--navy);
+  border-top:none;
+  box-shadow:0 -6px 20px rgba(4,23,41,.16);
+}
+.nav-btn{
+  color:#9fb2ca;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:0;
+  border-radius:0;
+  margin:0;
+  padding:9px 4px 7px;
+  position:relative;
+}
+.nav-btn svg{width:23px;height:23px}
+.nav-btn.active{
+  background:transparent;
+  color:#35a2ff;
+  box-shadow:none;
+  font-weight:700;
+}
+.nav-btn.active::after{
+  content:'';
+  position:absolute;
+  left:25%;right:25%;bottom:4px;
+  height:3px;border-radius:3px;background:#27a2ff;
+}
+.screen,.detail-screen{padding:18px 16px 10px}
+.page-title,.detail-title{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:-.035em;
+}
+.page-sub,.detail-meta{color:var(--text2);font-size:10px;font-weight:600}
+.card,.ib{
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:0 5px 16px rgba(28,53,76,.06);
+}
+.card{border-radius:16px}
+.card-inner{padding:17px 18px}
+.card-title{font-family:'Inter',sans-serif;color:var(--text);font-weight:750}
+.card-meta{color:var(--text2)}
+.card-chevron{color:#718198}
+.back-btn{color:var(--blue);font-weight:700}
+.ib{border-radius:16px;padding:16px}
+.ib-title,.psection-title{color:var(--blue);font-weight:800;letter-spacing:.08em}
+.intv{border-color:var(--border)}
+.intv-label{color:var(--blue);font-weight:800}
+.intv-text,.hl,.hv,.pname{color:var(--text)}
+.tabs,.week-scroll{border-color:var(--border)}
+.tab,.wbtn{background:#fff;color:var(--text2);border-color:var(--border)}
+.tab.active,.wbtn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.week-scroll{border-radius:12px}
+.tscroll{scrollbar-color:#afbecc transparent}
+.dtable{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(28,53,76,.06)}
+.dtable th{
+  background:#f2f6fa;
+  color:var(--text2);
+  border-color:var(--border);
+  position:sticky;
+  top:0;
+  z-index:2;
+}
+.dtable td{border-color:#e6edf3;color:var(--text2);background:#fff}
+.dtable .name-cell{
+  background:#fff;
+  color:var(--text);
+  z-index:3;
+  box-shadow:3px 0 8px rgba(28,53,76,.05);
+}
+.c-jt{background:#e9f5ff!important;color:#1769e8!important}
+.c-rh{background:#f3f5f7!important;color:#66778a!important}
+.c-off{color:#a4afbb!important}
+.legend{color:var(--text2)}
+.admin-overlay{background:rgba(5,20,34,.65)}
+.admin-panel{background:#f7f9fb;border-color:var(--border)}
+.admin-header{background:var(--navy);border:none}
+.admin-title{font-family:'Inter',sans-serif;color:#fff;font-weight:800}
+.admin-close{color:#c9d8e8}
+.admin-body{color:var(--text)}
+.admin-nav{border-color:var(--border)}
+.anav-btn{background:#fff;color:var(--text2)}
+.anav-btn.active{background:var(--blue);color:#fff}
+.form-input,.form-select,.form-textarea,.admin-item{background:#fff;color:var(--text);border-color:var(--border)}
+.btn-primary{background:var(--blue);color:#fff}
+.toast{background:var(--navy);border:none;color:#fff;box-shadow:0 8px 30px rgba(4,23,41,.28)}
+
+/* Aujourd'hui */
+#s-aujourdhui{padding-top:0}
+.today-date-band{
+  margin:0 -16px 20px;
+  padding:18px 18px 20px;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  color:#fff;
+}
+.today-kicker{font-size:9px;font-weight:700;letter-spacing:.16em;color:#9fb8d5;text-transform:uppercase;margin-bottom:3px}
+.today-date{font-size:27px;line-height:1.12;font-weight:800;letter-spacing:-.04em}
+.day-section{margin-bottom:24px}
+.day-heading{display:flex;align-items:center;gap:9px;margin:0 0 10px}
+.day-heading-bar{width:4px;height:18px;border-radius:3px;background:var(--blue)}
+.day-heading-text{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--text)}
+.day-heading.tomorrow .day-heading-bar{background:#91a0b2}
+.day-heading.tomorrow .day-heading-text{color:var(--text2)}
+.program-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:17px;
+  overflow:hidden;
+  margin-bottom:12px;
+  box-shadow:0 6px 18px rgba(28,53,76,.07);
+  position:relative;
+}
+.program-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}
+.program-card.gounod::before{background:var(--purple)}
+.program-card.team::before{background:var(--green)}
+.program-title{
+  padding:14px 17px 12px 22px;
+  border-bottom:1px solid var(--border);
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:-.025em;
+  color:var(--blue);
+  text-transform:uppercase;
+}
+.program-card.gounod .program-title{color:var(--purple)}
+.program-card.team .program-title{color:var(--green)}
+.program-row{
+  display:grid;
+  grid-template-columns:42px minmax(92px,.78fr) 1.35fr;
+  gap:10px;
+  align-items:center;
+  margin-left:20px;
+  padding:11px 15px 11px 0;
+  border-bottom:1px solid #e7edf3;
+}
+.program-row:last-child{border-bottom:none}
+.period-icon{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--blue-soft);color:var(--blue);font-size:18px;font-weight:700;
+}
+.gounod .period-icon{background:var(--purple-soft);color:var(--purple)}
+.period-name{font-size:13px;font-weight:800;color:var(--text)}
+.period-value{font-size:13px;font-weight:700;color:var(--text);line-height:1.25;overflow-wrap:anywhere}
+.period-value.empty{color:#9aa7b5;font-weight:500}
+.team-row{
+  display:flex;align-items:center;gap:10px;
+  margin-left:20px;padding:10px 16px 10px 0;
+  border-bottom:1px solid #e7edf3;
+}
+.team-row:last-child{border-bottom:none}
+.team-avatar{
+  width:31px;height:31px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--green-soft);color:var(--green);font-size:14px;
+}
+.team-name{flex:1;font-size:13px;font-weight:700;color:var(--text)}
+.team-hours{font-size:12px;font-weight:600;color:var(--text2);white-space:nowrap}
+.empty-team{padding:16px 20px;color:var(--text3);font-size:12px}
+
+@media(min-width:600px){
+  .screen,.detail-screen{max-width:720px;margin:0 auto}
+  .today-date-band{border-radius:0 0 18px 18px}
+}
 </style>
 </head>
 <body>
 
 <header class="app-header">
-  <div style="flex:1">
-    <div class="header-logo">Loges — Bastille</div>
-    <span class="header-sub">Service Logistique</span>
+  <div class="brand-wrap">
+    <svg class="brand-mark" viewBox="0 0 58 46" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M5 38h48M9 38V18h40v20M14 18v-7h30v7M19 11V6h20v5M24 6V3h10v3"/>
+      <path d="M14 38V23h8v15M25 38V23h8v15M36 38V23h8v15M7 23h44M4 30h7M47 30h7"/>
+    </svg>
+    <div class="brand-copy">
+      <div class="header-logo">Dispositif scénique</div>
+      <span class="header-sub">OPÉRA BASTILLE</span>
+    </div>
   </div>
-  <button class="admin-btn" onclick="openAdmin()">⚙ Admin</button>
+  <button class="admin-btn" onclick="openAdmin()" aria-label="Administration">Administration</button>
 </header>
 
-<div id="s-conduites" class="screen active">
+<div id="s-conduites" class="screen">
   <div class="page-title">Conduites</div>
   <div class="page-sub">Saison en cours</div>
   <div id="conduites-list"></div>
@@ -181,9 +424,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);pad
   <div id="planning-content"></div>
 </div>
 
-<div id="s-aujourdhui" class="screen">
-  <div class="screen-header"><span class="screen-title">Aujourd'hui</span></div>
-  <div class="screen-body" id="aujourdhui-content"></div>
+<div id="s-aujourdhui" class="screen active">
+  <div id="aujourdhui-content"></div>
 </div>
 
 <div id="s-individuel" class="screen">
@@ -201,17 +443,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);pad
 </div>
 
 <nav class="bottom-nav">
-  <button class="nav-btn active" onclick="showScreen('conduites')" id="nav-conduites">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-    Conduites
-  </button>
-  <button class="nav-btn" onclick="showScreen('aujourdhui')" id="nav-aujourdhui">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <button class="nav-btn active" onclick="showScreen('aujourdhui')" id="nav-aujourdhui">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     Aujourd'hui
   </button>
   <button class="nav-btn" onclick="showScreen('planning')" id="nav-planning">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     Planning
+  </button>
+  <button class="nav-btn" onclick="showScreen('conduites')" id="nav-conduites">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    Conduites
   </button>
   <button class="nav-btn" onclick="showScreen('individuel')" id="nav-individuel">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -831,7 +1073,7 @@ function buildDayBlockLegacy(label, dateStr, bastille, dispositif, dayIndex, isT
     </div>`;
 }
 
-function renderSalleProgramme(titre, day, accent) {
+function renderSalleProgrammeClassic(titre, day, accent) {
   const data = day || {matin:'—',am:'—',soir:'—'};
   const slots = [
     {label:'Matin', val:data.matin},
@@ -850,7 +1092,7 @@ function renderSalleProgramme(titre, day, accent) {
     '</div></div>';
 }
 
-function buildDayBlock(label, bastille, gounod, dispositif, dayIndex, isToday) {
+function buildDayBlockClassic(label, bastille, gounod, dispositif, dayIndex, isToday) {
   if (!bastille || dayIndex < 0 || dayIndex >= bastille.length) return '';
   const equipe = dispositif
     .filter(function(p) {
@@ -882,13 +1124,78 @@ function buildDayBlock(label, bastille, gounod, dispositif, dayIndex, isToday) {
     '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:4px">' + rows + '</div>';
 }
 
+function renderProgramCard(title, day, kind) {
+  const data = day || {matin:'—',am:'—',soir:'—'};
+  const slots = [
+    {label:'Matin', icon:'☀', val:data.matin},
+    {label:'Après-midi', icon:'◒', val:data.am},
+    {label:'Soir', icon:'☾', val:data.soir}
+  ];
+  return '<section class="program-card ' + kind + '">' +
+    '<div class="program-title">' + title + '</div>' +
+    slots.map(function(s) {
+      const value = s.val || '—';
+      return '<div class="program-row">' +
+        '<div class="period-icon" aria-hidden="true">' + s.icon + '</div>' +
+        '<div class="period-name">' + s.label + '</div>' +
+        '<div class="period-value' + (value === '—' ? ' empty' : '') + '">' + value + '</div>' +
+      '</div>';
+    }).join('') +
+  '</section>';
+}
+
+function renderTeamCard(equipe) {
+  const rows = equipe.length
+    ? equipe.map(function(p) {
+        return '<div class="team-row">' +
+          '<div class="team-avatar" aria-hidden="true">●</div>' +
+          '<div class="team-name">' + p.nom + '</div>' +
+          '<div class="team-hours">' + p.horaire + '</div>' +
+        '</div>';
+      }).join('')
+    : '<div class="empty-team">Aucun technicien présent</div>';
+  return '<section class="program-card team">' +
+    '<div class="program-title">Équipe présente</div>' + rows +
+  '</section>';
+}
+
+function buildDayBlock(label, bastille, gounod, dispositif, dayIndex, isToday) {
+  if (!bastille || dayIndex < 0 || dayIndex >= bastille.length) return '';
+  const equipe = dispositif
+    .filter(function(p) {
+      return p.nom !== 'MANSIOT Denis' &&
+        !/^SC[ÉE]NIQUE\s/i.test(p.nom) &&
+        hasHoraire(p.nom, p.jours[dayIndex]);
+    })
+    .map(function(p) {
+      return {nom:p.nom, horaire:formatHoraire(p.jours[dayIndex])};
+    });
+  const prefix = isToday ? "Aujourd'hui" : 'Demain';
+  return '<div class="day-section">' +
+    '<div class="day-heading' + (isToday ? '' : ' tomorrow') + '">' +
+      '<span class="day-heading-bar"></span>' +
+      '<span class="day-heading-text">' + prefix + ' · ' + label + '</span>' +
+    '</div>' +
+    renderProgramCard('Plateau', bastille[dayIndex], 'plateau') +
+    renderProgramCard('Gounod', (gounod || [])[dayIndex], 'gounod') +
+    renderTeamCard(equipe) +
+  '</div>';
+}
+
 function renderAujourdhui() {
   const today = new Date();
   const tomorrow = new Date(today); tomorrow.setDate(today.getDate()+1);
   const jours = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
-  const mois = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+  const joursLongs = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const moisLongs = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
 
-  function dateLabel(d) { return `${jours[d.getDay()]} ${d.getDate()} ${mois[d.getMonth()]}`; }
+  function dateLabel(d) { return joursLongs[d.getDay()] + ' ' + d.getDate() + ' ' + moisLongs[d.getMonth()]; }
+  function dateBand(d) {
+    return '<div class="today-date-band">' +
+      '<div class="today-kicker">Aujourd’hui</div>' +
+      '<div class="today-date">' + dateLabel(d) + '</div>' +
+    '</div>';
+  }
   function findDay(d) {
     const j = jours[d.getDay()], num = d.getDate();
     for (const w of getWeeks()) {
@@ -905,15 +1212,13 @@ function renderAujourdhui() {
   const el = document.getElementById('aujourdhui-content');
 
   if (!todayFound && !tomorrowFound) {
-    el.innerHTML = `<div style="text-align:center;padding:60px 20px">
-      <div style="font-size:13px;color:var(--text3)">Aucun programme disponible.</div></div>`;
+    el.innerHTML = dateBand(today) + '<div style="text-align:center;padding:50px 20px;color:var(--text3);font-size:13px">Aucun programme disponible.</div>';
     return;
   }
 
-  el.innerHTML = `<div style="padding:4px 0">
-    ${todayFound ? buildDayBlock(dateLabel(today), todayFound.week.bastille, todayFound.week.gounod, todayFound.week.dispositif, todayFound.idx, true) : ''}
-    ${tomorrowFound ? buildDayBlock(dateLabel(tomorrow), tomorrowFound.week.bastille, tomorrowFound.week.gounod, tomorrowFound.week.dispositif, tomorrowFound.idx, false) : ''}
-  </div>`;
+  el.innerHTML = dateBand(today) +
+    (todayFound ? buildDayBlock(dateLabel(today), todayFound.week.bastille, todayFound.week.gounod, todayFound.week.dispositif, todayFound.idx, true) : '') +
+    (tomorrowFound ? buildDayBlock(dateLabel(tomorrow), tomorrowFound.week.bastille, tomorrowFound.week.gounod, tomorrowFound.week.dispositif, tomorrowFound.idx, false) : '');
 }
 
 // ── CONDUITES ──
@@ -986,8 +1291,8 @@ function renderLogesSchema(op) {
   };
 
   const parts = [];
-  const logeRect = (x,y,w,h) => `<rect x="${x+1}" y="${y+1}" width="${w-2}" height="${h-2}" fill="rgba(201,168,76,0.28)" stroke="#c9a84c" stroke-width="1.2" rx="2"/>`;
-  const logeText = (x,y,size,val) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="${size}" font-weight="600" fill="#f0d68f" font-family="DM Sans,sans-serif">${val}</text>`;
+  const logeRect = (x,y,w,h) => `<rect x="${x+1}" y="${y+1}" width="${w-2}" height="${h-2}" fill="rgba(23,105,232,0.16)" stroke="#1769e8" stroke-width="1.2" rx="2"/>`;
+  const logeText = (x,y,size,val) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="${size}" font-weight="700" fill="#0a1b38" font-family="Inter,sans-serif">${val}</text>`;
 
   Object.keys(vZones).forEach(zk => {
     if (!byZone[zk]) return;
@@ -1028,7 +1333,7 @@ function renderLogesSchema(op) {
     byZone[zk].forEach(l => {
       parts.push(logeRect(z.x, z.y, z.w, z.h));
       parts.push(logeText(z.x + z.w/2, z.y + z.h/2 + 3.5, 10, l.chaises));
-      parts.push(`<text x="${z.x + z.w/2}" y="${z.y + z.h + 8}" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.4)" font-family="DM Sans,sans-serif">ASC</text>`);
+      parts.push(`<text x="${z.x + z.w/2}" y="${z.y + z.h + 8}" text-anchor="middle" font-size="7" fill="rgba(10,27,56,0.5)" font-family="Inter,sans-serif">ASC</text>`);
     });
   });
 
@@ -1036,13 +1341,13 @@ function renderLogesSchema(op) {
 
   return `<div style="background:var(--bg4);border-radius:10px;padding:10px 8px">
     <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-      <rect x="15" y="10" width="110" height="75" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
-      <text x="70" y="52" text-anchor="middle" font-size="9" fill="rgba(232,228,216,0.32)" font-family="DM Sans,sans-serif">CASE ARRIÈRE</text>
-      <rect x="235" y="10" width="110" height="75" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
-      <text x="290" y="52" text-anchor="middle" font-size="9" fill="rgba(232,228,216,0.32)" font-family="DM Sans,sans-serif">CASE ARRIÈRE</text>
-      <rect x="130" y="10" width="100" height="35" fill="none" stroke="rgba(232,228,216,0.14)" stroke-width="1"/>
-      <rect x="140" y="50" width="80" height="35" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.3)" stroke-width="1" rx="3"/>
-      ${byZone['tournette'] ? '' : '<text x="180" y="72" text-anchor="middle" font-size="9" font-weight="500" fill="#c9a84c" font-family="DM Sans,sans-serif">TOURNETTE</text>'}
+      <rect x="15" y="10" width="110" height="75" fill="none" stroke="rgba(10,27,56,0.2)" stroke-width="1"/>
+      <text x="70" y="52" text-anchor="middle" font-size="9" fill="rgba(10,27,56,0.48)" font-family="Inter,sans-serif">CASE ARRIÈRE</text>
+      <rect x="235" y="10" width="110" height="75" fill="none" stroke="rgba(10,27,56,0.2)" stroke-width="1"/>
+      <text x="290" y="52" text-anchor="middle" font-size="9" fill="rgba(10,27,56,0.48)" font-family="Inter,sans-serif">CASE ARRIÈRE</text>
+      <rect x="130" y="10" width="100" height="35" fill="none" stroke="rgba(10,27,56,0.2)" stroke-width="1"/>
+      <rect x="140" y="50" width="80" height="35" fill="rgba(23,105,232,0.06)" stroke="rgba(23,105,232,0.3)" stroke-width="1" rx="3"/>
+      ${byZone['tournette'] ? '' : '<text x="180" y="72" text-anchor="middle" font-size="9" font-weight="600" fill="#1769e8" font-family="Inter,sans-serif">TOURNETTE</text>'}
       <rect x="15" y="90" width="110" height="14" fill="rgba(90,170,106,0.08)" stroke="rgba(90,170,106,0.4)" stroke-width="1" rx="2"/>
       ${zoneLabel('lointain-jardin', 70, 100, 9, 'rgba(90,170,106,0.6)')}
       <rect x="235" y="90" width="110" height="14" fill="rgba(90,170,106,0.08)" stroke="rgba(90,170,106,0.4)" stroke-width="1" rx="2"/>
@@ -1059,8 +1364,8 @@ function renderLogesSchema(op) {
       ${zoneLabel('face-jardin', 70, 177, 9, 'rgba(192,80,80,0.7)')}
       <rect x="235" y="167" width="110" height="14" fill="rgba(192,80,80,0.09)" stroke="rgba(192,80,80,0.4)" stroke-width="1" rx="2"/>
       ${zoneLabel('face-cour', 290, 177, 9, 'rgba(192,80,80,0.7)')}
-      ${byZone['asc-jardin'] ? '' : '<rect x="85" y="184" width="30" height="13" fill="none" stroke="rgba(232,228,216,0.22)" stroke-width="0.8" rx="2"/><text x="100" y="193" text-anchor="middle" font-size="8" fill="rgba(232,228,216,0.42)" font-family="DM Sans,sans-serif">ASC</text>'}
-      ${byZone['asc-cour'] ? '' : '<rect x="245" y="184" width="30" height="13" fill="none" stroke="rgba(232,228,216,0.22)" stroke-width="0.8" rx="2"/><text x="260" y="193" text-anchor="middle" font-size="8" fill="rgba(232,228,216,0.42)" font-family="DM Sans,sans-serif">ASC</text>'}
+      ${byZone['asc-jardin'] ? '' : '<rect x="85" y="184" width="30" height="13" fill="none" stroke="rgba(10,27,56,0.25)" stroke-width="0.8" rx="2"/><text x="100" y="193" text-anchor="middle" font-size="8" fill="rgba(10,27,56,0.55)" font-family="Inter,sans-serif">ASC</text>'}
+      ${byZone['asc-cour'] ? '' : '<rect x="245" y="184" width="30" height="13" fill="none" stroke="rgba(10,27,56,0.25)" stroke-width="0.8" rx="2"/><text x="260" y="193" text-anchor="middle" font-size="8" fill="rgba(10,27,56,0.55)" font-family="Inter,sans-serif">ASC</text>'}
       <text x="15" y="212" font-size="11" fill="#c05050" font-weight="700" font-style="italic" font-family="DM Sans,sans-serif">JARDIN</text>
       <text x="345" y="212" text-anchor="end" font-size="11" fill="#c05050" font-weight="700" font-style="italic" font-family="DM Sans,sans-serif">COUR</text>
       ${parts.join('')}
@@ -1525,6 +1830,7 @@ function toast(msg) {
 
 renderConduites();
 renderWeekTabs();
+renderAujourdhui();
 // ── PLANNING INDIVIDUEL ──
 function renderIndividuel() {
   const weeks = getWeeks();
