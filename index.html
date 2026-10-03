@@ -762,7 +762,7 @@ const LEGACY_WEEKS = [
   ]},
 ];
 
-// ── DONNÉES OFFICIELLES — SEPTEMBRE / OCTOBRE 2026 ──
+// ── DONNÉES OFFICIELLES — OCTOBRE 2026 ──
 const SEED_OPERAS = [
   {
     id:'barbier-seville', nom:'Le Barbier de Séville', type:'Opéra en deux actes', comp:'G. Rossini', saison:'2026-2027',
@@ -825,54 +825,29 @@ const SEED_OPERAS = [
       {zone:'face-jardin', chaises:3}
     ],
     notes:'La loge jardin de 3 chaises doit être déplacée à la face à l’entracte.'
+  },
+  {
+    id:'crepuscule-dieux', nom:'Le Crépuscule des dieux', type:'Opéra en trois parties', comp:'R. Wagner', saison:'2026-2027',
+    soiree:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['18h00','20h50','22h30'],
+      fin:['20h05','22h00','23h50'],
+      entractes:[45,30,'—'],
+      total:'5h50'
+    },
+    interventions:[
+      {label:'Mise', texte:'FBLC — laver le plateau à la mise.'},
+      {label:'1er entracte', texte:'Nettoyer le sang sur le tapis.'}
+    ],
+    loges:[
+      {zone:'face-jardin', chaises:4}
+    ],
+    notes:'1 loge de 4 chaises à la face jardin.'
   }
 ];
 
 const EMPTY_GOUNOD = () => ({matin:'—',am:'—',soir:'—'});
 const SEED_WEEKS = [
-  {id:'s39',label:'S39',dates:'21–27 Septembre 2026',bastille:[
-    {jour:'Lun 21',matin:'SP CREP',am:'MISE HAML',soir:'R2 HAML'},
-    {jour:'Mar 22',matin:'MISE CREP',am:'SPC CREP',soir:'SPC CREP'},
-    {jour:'Mer 23',matin:'LUM CREP',am:'MISE BARB',soir:'R4 BARB'},
-    {jour:'Jeu 24',matin:'ITAC CREP',am:'MISE HAML',soir:'R3 HAML'},
-    {jour:'Ven 25',matin:'MISE CREP',am:'GENP CREP',soir:'GENP CREP'},
-    {jour:'Sam 26',matin:'LUM CREP',am:'MISE BARB',soir:'R5 BARB'},
-    {jour:'Dim 27',matin:'MISE HAML',am:'R4 HAML',soir:'MISE CREP'}
-  ],gounod:[EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD()],dispositif:[
-    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
-    {nom:'FOUGERAY Franck',jours:['1524 CP / S','1524 CP / S','1524 CP / S','1524 CP / S','R CP / M','RH CP / M','RH CP / M'],h:'0.00'},
-    {nom:'WEBER Adrien',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'35.00'},
-    {nom:'BARRAGAN Maurane',jours:['816 CP / M','816 CP / M','816 CP / M','R CP / S','1524 CP / S','RH CP / S','RH CP / S'],h:'0.00'},
-    {nom:'GOUIN Pierre',jours:['R / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'28.00'},
-    {nom:'REITH Wilfrid',jours:['1524 / S','1524 / S','1524 / S','RH / S','RH / S','1324 / S','1019 / S'],h:'42.00'},
-    {nom:'RINTO Romain',jours:['1524 / S','RH / S','RH / S','1524 / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
-    {nom:'CRISTOFARI Valentina',jours:['816 denis','1524 CP','1524 CP','1524 CP','1524 CP','—','1019 Hamel'],h:'40.00'},
-    {nom:'NESI Valentina',jours:['1524 CP','1524 CP','—','1524 CP','1524 CP','—','—'],h:'32.00'}
-  ]},
-  {id:'s40',label:'S40',dates:'28 Septembre – 4 Octobre 2026',bastille:[
-    {jour:'Lun 28',matin:'SO CREP',am:'SO CREP',soir:'LUM CREP'},
-    {jour:'Mar 29',matin:'SOC CREP',am:'SOC CREP',soir:'LUM CREP'},
-    {jour:'Mer 30',matin:'SO CREP',am:'MISE HAML',soir:'R5 HAML'},
-    {jour:'Jeu 1',matin:'MISE BARB',am:'CORR BARB',soir:'R6 BARB'},
-    {jour:'Ven 2',matin:'MISE CREP',am:'LUM CREP',soir:'PGEN CREP'},
-    {jour:'Sam 3',matin:'LUM CREP',am:'MISE HAML',soir:'R6 HAML'},
-    {jour:'Dim 4',matin:'MISE BARB',am:'R7 BARB',soir:'MISE CREP'}
-  ],gounod:[
-    EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),EMPTY_GOUNOD(),
-    {matin:'—',am:'SP ORDU',soir:'SP ORDU'},
-    {matin:'—',am:'SP ORDU',soir:'SP ORDU'},
-    {matin:'—',am:'—',soir:'SP ORDU'}
-  ],dispositif:[
-    {nom:'MANSIOT Denis',jours:['JT CP','JT CP','JT CP','JT CP','JT CP','RH CP','RH CP'],h:'0.00'},
-    {nom:'FOUGERAY Franck',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
-    {nom:'WEBER Adrien',jours:['RH / M','816 / M','RH / M','1524 / S','1524 / S','1324 / S','1019 / S'],h:'41.00'},
-    {nom:'BARRAGAN Maurane',jours:['RH CP / S','1019 CP / S','1524 CP / S','RH CP / S','1524 CP / S','1324 CP / S','1019 CP / S'],h:'0.00'},
-    {nom:'GOUIN Pierre',jours:['1019 / S','RH / S','1524 / S','RH / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
-    {nom:'REITH Wilfrid',jours:['1019 / S','1019 / S','1524 / S','R / S','R / M','RH / M','RH / M'],h:'24.00'},
-    {nom:'RINTO Romain',jours:['816 / M','R / M','816 / M','816 / M','816 / M','RH','RH'],h:'28.00'},
-    {nom:'CRISTOFARI Valentina',jours:['—','—','—','—','—','—','—'],h:'0.00'},
-    {nom:'NESI Valentina',jours:['—','1019 CP','1524 CP','1524 CP','1524 CP','1324 CP','—'],h:'42.00'}
-  ]},
   {id:'s41',label:'S41',dates:'5–11 Octobre 2026',bastille:[
     {jour:'Lun 5',matin:'LUM CREP',am:'LUM CREP',soir:'LTV CREP'},
     {jour:'Mar 6',matin:'LTV CREP',am:'MISE HAML',soir:'R7 HAML'},
@@ -978,6 +953,33 @@ const SEED_WEEKS = [
     {nom:'REITH Wilfrid',jours:['816 / M','816 / M','816 / M','816 / M','RH / M','RH','JF'],h:'28.00'},
     {nom:'RINTO Romain',jours:['816 CP / M','816 CP / M','816 RCC / M','1524 RCC / S','1524 RCC / S','RH RCC / S','JF / S'],h:'21.00'},
     {nom:'DOMENICI Alessandra',jours:['816 CP','—','—','—','—','—','—'],h:'7.00'}
+  ]},
+  {id:'s45',label:'S45',dates:'2–8 Novembre 2026',bastille:[
+    {jour:'Lun 2',matin:'SO SIEG',am:'SO SIEG',soir:'LUM SIEG'},
+    {jour:'Mar 3',matin:'LUM SIEG',am:'MISE BARB',soir:'R13 BARB'},
+    {jour:'Mer 4',matin:'MISE SIEG',am:'LUM SIEG',soir:'GEN SIEG'},
+    {jour:'Jeu 5',matin:'LTV SIEG',am:'MISE BARB',soir:'R14 BARB'},
+    {jour:'Ven 6',matin:'MISE ORDU',am:'LUM ORDU',soir:'R1 ORDU'},
+    {jour:'Sam 7',matin:'MISE WALK',am:'LUM WALK',soir:'R1 WALK'},
+    {jour:'Dim 8',matin:'TEC TURA',am:'TEC TURA',soir:'TEC TURA'}
+  ],gounod:[
+    {matin:'—',am:'SP TURA',soir:'SP TURA'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'SPC TURA',am:'SPC TURA',soir:'—'},
+    {matin:'SPC TURA',am:'SPC TURA',soir:'—'},
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['R / S','1524 / S','1524 / S','1524 / S','R / M','RH / M','RH / M'],h:'24.00'},
+    {nom:'WEBER Adrien',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'35.00'},
+    {nom:'BARRAGAN Maurane',jours:['816 / M','816 / M','816 / M','1524 / S','1524 / S','RH / S','RH / S'],h:'37.00'},
+    {nom:'GOUIN Pierre',jours:['R / M','R / M','R / M','816 / M','816 / M','RH / M','RH / M'],h:'14.00'},
+    {nom:'REITH Wilfrid',jours:['1019 / S','1524 / S','1524 / S','RH / S','1524 / S','1324 / S','RH / S'],h:'42.00'},
+    {nom:'RINTO Romain',jours:['1524 RCC / S','1524 RCC / S','R / S','RH / S','1524 RCC / S','1324 RCC / S','RH / S'],h:'28.00'},
+    {nom:'SCÉNIQUE 2',jours:['—','—','—','—','—','—','—'],h:'0.00'},
+    {nom:'SCÉNIQUE 1',jours:['1019 CP','—','—','—','1524 CP','1324 CP','—'],h:'26.00'}
   ]}
 ];
 
