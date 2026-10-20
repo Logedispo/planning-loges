@@ -762,7 +762,7 @@ const LEGACY_WEEKS = [
   ]},
 ];
 
-// ── DONNÉES OFFICIELLES — OCTOBRE 2026 ──
+// ── DONNÉES OFFICIELLES — OCTOBRE / NOVEMBRE 2026 ──
 const SEED_OPERAS = [
   {
     id:'barbier-seville', nom:'Le Barbier de Séville', type:'Opéra en deux actes', comp:'G. Rossini', saison:'2026-2027',
@@ -793,40 +793,6 @@ const SEED_OPERAS = [
     notes:'4 loges · 34 chaises. Laisser la place pour la voiture côté jardin et pour la moto côté cour.'
   },
   {
-    id:'hamlet', nom:'Hamlet', type:'Opéra', comp:'A. Thomas', saison:'2026-2027',
-    soiree:{
-      parties:['Partie 1','Partie 2'],
-      debut:['19h30','22h20'],
-      fin:['21h40','23h10'],
-      entractes:[40,'—'],
-      total:'3h40'
-    },
-    apresMidi:{
-      parties:['Partie 1','Partie 2'],
-      debut:['14h30','17h20'],
-      fin:['16h40','18h10'],
-      entractes:[40,'—'],
-      total:'3h40'
-    },
-    interventions:[
-      {label:'Mise', texte:"Passer de l'harlequin sur le sol dans les zones glissantes. La loge de 3 de l'ascenseur a été déplacée à la face."},
-      {label:'Entracte', texte:'Ramasser les filaments dorés à la main. Déplacer la loge jardin à la face.'},
-      {label:'Fin du spectacle', texte:'Avant les saluts, essuyer le sang et la cendre à la face avec une lavette et des chiffons.'}
-    ],
-    loges:[
-      {zone:'tournette', chaises:72, libelle:'72 hommes'},
-      {zone:'tournette', chaises:70, libelle:'70 femmes'},
-      {zone:'lointain-jardin', chaises:3},
-      {zone:'lointain-jardin', chaises:3},
-      {zone:'lointain-cour', chaises:12},
-      {zone:'lointain-cour', chaises:5},
-      {zone:'lointain-cour', chaises:4},
-      {zone:'lointain-cour', chaises:3},
-      {zone:'face-jardin', chaises:3}
-    ],
-    notes:'La loge jardin de 3 chaises doit être déplacée à la face à l’entracte.'
-  },
-  {
     id:'crepuscule-dieux', nom:'Le Crépuscule des dieux', type:'Opéra en trois parties', comp:'R. Wagner', saison:'2026-2027',
     soiree:{
       parties:['Partie 1','Partie 2','Partie 3'],
@@ -843,64 +809,76 @@ const SEED_OPERAS = [
       {zone:'face-jardin', chaises:4}
     ],
     notes:'1 loge de 4 chaises à la face jardin.'
+  },
+  {
+    id:'or-du-rhin', nom:'L’Or du Rhin', type:'Opéra en quatre actes', comp:'R. Wagner', saison:'2026-2027',
+    soiree:{
+      parties:['Partie 1'],
+      debut:['19h30'],
+      fin:['22h00'],
+      entractes:['—'],
+      total:'2h30'
+    },
+    apresMidi:{
+      parties:['Partie 1'],
+      debut:['14h30'],
+      fin:['17h00'],
+      entractes:['—'],
+      total:'2h30'
+    },
+    interventions:[
+      {label:'Mise', texte:'Vérifier le zéro, aspirer le rail face et vérifier la propreté de la face.'},
+      {label:'Fin — avant les saluts', texte:'Aller au plateau et ramasser le maximum de pommes.'},
+      {label:'Fin — après les saluts', texte:'Ramasser ce qui reste de pommes. Nettoyer au maximum et voir à la face la tache de pétrole.'}
+    ],
+    loges:[
+      {zone:'face-jardin', chaises:2},
+      {zone:'face-jardin', chaises:2}
+    ],
+    notes:'2 loges de 2 chaises à la face jardin.'
+  },
+  {
+    id:'walkyrie', nom:'La Walkyrie', type:'Opéra en trois actes', comp:'R. Wagner', saison:'2026-2027',
+    soiree:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['18h30','20h15','22h10'],
+      fin:['19h30','21h40','23h15'],
+      entractes:[45,30,'—'],
+      total:'5h00'
+    },
+    apresMidi:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['14h00','15h45','17h45'],
+      fin:['15h00','17h15','18h55'],
+      entractes:[45,30,'—'],
+      total:'5h00'
+    },
+    interventions:[
+      {label:'Mise', texte:'Coup de balai blanc sur PO4.'},
+      {label:'1er entracte', texte:'Enlever la poche de sang au 1er étage, mais ne pas nettoyer. Essuyer l’eau sous la chaise au 1er étage.'},
+      {label:'2e entracte', texte:'Nettoyer le sang noir et aspirer le verre cassé dans la télé (lavette, balayette et aspirateur). Vérifier qu’il n’y a pas de sang sur le lino.'}
+    ],
+    loges:[],
+    notes:'2 personnes, pas de loge. Le sang du 1er étage est à nettoyer le lendemain du jeu.'
+  },
+  {
+    id:'siegfried', nom:'Siegfried', type:'Opéra en trois parties', comp:'R. Wagner', saison:'2026-2027',
+    soiree:{
+      parties:['Partie 1','Partie 2','Partie 3'],
+      debut:['18h00','20h05','21h50'],
+      fin:['19h20','21h20','23h15'],
+      entractes:[45,30,'—'],
+      total:'5h15'
+    },
+    interventions:[
+      {label:'Interventions', texte:'—'}
+    ],
+    loges:[]
   }
 ];
 
 const EMPTY_GOUNOD = () => ({matin:'—',am:'—',soir:'—'});
 const SEED_WEEKS = [
-  {id:'s41',label:'S41',dates:'5–11 Octobre 2026',bastille:[
-    {jour:'Lun 5',matin:'LUM CREP',am:'LUM CREP',soir:'LTV CREP'},
-    {jour:'Mar 6',matin:'LTV CREP',am:'MISE HAML',soir:'R7 HAML'},
-    {jour:'Mer 7',matin:'MISE BARB',am:'CORR BARB',soir:'R8 BARB'},
-    {jour:'Jeu 8',matin:'MISE CREP',am:'LUM CREP',soir:'R1 CREP'},
-    {jour:'Ven 9',matin:'MISE HAML',am:'CORR HAML',soir:'R8 HAML'},
-    {jour:'Sam 10',matin:'MISE BARB',am:'MISE BARB',soir:'R9 BARB'},
-    {jour:'Dim 11',matin:'MISE CREP',am:'R2 CREP',soir:'MISE ORDU'}
-  ],gounod:[
-    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
-    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
-    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
-    EMPTY_GOUNOD(),
-    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
-    {matin:'SP ORDU',am:'SP ORDU',soir:'—'},
-    EMPTY_GOUNOD()
-  ],dispositif:[
-    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
-    {nom:'FOUGERAY Franck',jours:['816 / M','816 / M','816 / M','1524 / S','1524 / S','RH / S','RH / S'],h:'37.00'},
-    {nom:'WEBER Adrien',jours:['RH / S','1524 / S','1524 / S','1524 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
-    {nom:'BARRAGAN Maurane',jours:['816 CP / M','816 CP / M','R CP / M','816 CP / M','816 CP / M','RH CP / M','RH CP / M'],h:'0.00'},
-    {nom:'GOUIN Pierre',jours:['1524 / S','1524 / S','R / S','R / S','R / M','RH / M','RH / M'],h:'16.00'},
-    {nom:'REITH Wilfrid',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
-    {nom:'RINTO Romain',jours:['1524 / S','RH / S','1524 / S','RH / S','1524 / S','1324 / S','1019 / S'],h:'42.00'},
-    {nom:'NESI Valentina',jours:['1524 CP','1524 CP','—','1524 CP','—','1324 CP','1019 CP'],h:'42.00'},
-    {nom:'SCÉNIQUE 2',jours:['—','—','—','816 Crep','816 CP','—','—'],h:'14.00'}
-  ]},
-  {id:'s42',label:'S42',dates:'12–18 Octobre 2026',bastille:[
-    {jour:'Lun 12',matin:'TEC ORDU',am:'TEC ORDU',soir:'FIL ORDU'},
-    {jour:'Mar 13',matin:'LUM ORDU',am:'LUM ORDU',soir:'SP ORDU'},
-    {jour:'Mer 14',matin:'LUM ORDU',am:'GENP ORDU',soir:'LUM ORDU'},
-    {jour:'Jeu 15',matin:'SO ORDU',am:'SO ORDU',soir:'LUM ORDU'},
-    {jour:'Ven 16',matin:'LUM ORDU',am:'LUM ORDU',soir:'GEN ORDU'},
-    {jour:'Sam 17',matin:'TEC WALK',am:'TEC WALK',soir:'TEC WALK'},
-    {jour:'Dim 18',matin:'MISE CREP',am:'R3 CREP',soir:'MISE WALK'}
-  ],gounod:[
-    {matin:'—',am:'SP ORDU',soir:'SP ORDU'},
-    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
-    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
-    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
-    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
-    {matin:'TEC TURA',am:'TEC TURA',soir:'—'},
-    EMPTY_GOUNOD()
-  ],dispositif:[
-    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
-    {nom:'FOUGERAY Franck',jours:['RH / S','1524 / S','1019 / S','1019 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
-    {nom:'WEBER Adrien',jours:['816 / M','R / M','R / M','816 / M','816 / M','RH / M','RH / M'],h:'21.00'},
-    {nom:'BARRAGAN Maurane',jours:['RH / S','1524 / S','1019 / S','1019 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
-    {nom:'GOUIN Pierre',jours:['R / M','816 / M','816 / M','816 / M','816 / M','RH','RH'],h:'28.00'},
-    {nom:'REITH Wilfrid',jours:['RH / M','816 / M','816 / M','1019 / S','1524 / S','RH / S','1019 / S'],h:'38.00'},
-    {nom:'RINTO Romain',jours:['R CP / S','1524 CP / S','1524 CP / S','1524 CP / S','816 CP / M','RH CP / M','RH CP / M'],h:'0.00'},
-    {nom:'SCÉNIQUE 1',jours:['816 CP','1524','1019 CP','—','—','—','—'],h:'23.00'}
-  ]},
   {id:'s43',label:'S43',dates:'19–25 Octobre 2026',bastille:[
     {jour:'Lun 19',matin:'LUM WALK',am:'FIL WALK',soir:'LUM WALK'},
     {jour:'Mar 20',matin:'LUM WALK',am:'SP WALK',soir:'SP WALK'},
@@ -980,6 +958,89 @@ const SEED_WEEKS = [
     {nom:'RINTO Romain',jours:['1524 RCC / S','1524 RCC / S','R / S','RH / S','1524 RCC / S','1324 RCC / S','RH / S'],h:'28.00'},
     {nom:'SCÉNIQUE 2',jours:['—','—','—','—','—','—','—'],h:'0.00'},
     {nom:'SCÉNIQUE 1',jours:['1019 CP','—','—','—','1524 CP','1324 CP','—'],h:'26.00'}
+  ]},
+  {id:'s46',label:'S46',dates:'9–15 Novembre 2026',bastille:[
+    {jour:'Lun 9',matin:'TEC TURA',am:'TEC TURA',soir:'FIL TURA'},
+    {jour:'Mar 10',matin:'MISE SIEG',am:'LUM SIEG',soir:'R1 SIEG'},
+    {jour:'Mer 11',matin:'MISE TURA',am:'LUM TURA',soir:'LUM TURA'},
+    {jour:'Jeu 12',matin:'LUM TURA',am:'SP TURA',soir:'SP TURA'},
+    {jour:'Ven 13',matin:'MISE CREP',am:'LUM CREP',soir:'R1 CREP'},
+    {jour:'Sam 14',matin:'MISE TURA',am:'SPC TURA',soir:'SPC TURA'},
+    {jour:'Dim 15',matin:'MISE ORDU',am:'R2 ORDU',soir:'MISE TURA'}
+  ],gounod:[
+    {matin:'—',am:'—',soir:'SP TURA'},
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    {matin:'—',am:'SP TURA',soir:'SP TURA'},
+    EMPTY_GOUNOD(),
+    {matin:'SP TURA',am:'SP TURA',soir:'—'},
+    EMPTY_GOUNOD(),
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT CP','JT CP','JF','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 / M','816 / M','JF / M','816 / M','816 / M','RH / M','RH / M'],h:'28.00'},
+    {nom:'WEBER Adrien',jours:['RH / M','RH / M','JF / M','1524 / S','1524 / S','1324 / S','1019 / S'],h:'34.00'},
+    {nom:'BARRAGAN Maurane',jours:['RH / S','RH / S','JF / S','1524 / S','1524 / S','1324 / S','1019 / S'],h:'34.00'},
+    {nom:'GOUIN Pierre',jours:['RH / S','1524 CP / S','JF / S','1524 CP / S','1524 CP / S','RH / S','1019 CP / S'],h:'0.00'},
+    {nom:'REITH Wilfrid',jours:['R / S','1524 / S','JF / S','R / S','R / M','RH / M','RH / M'],h:'8.00'},
+    {nom:'RINTO Romain',jours:['816 / M','816 / M','JF / M','816 / M','816 / M','RH / RH','RH / RH'],h:'28.00'},
+    {nom:'DOMENICI Alessandra',jours:['—','1524 CP','—','—','—','—','1019 CP'],h:'16.00'},
+    {nom:'NESI Valentina',jours:['—','—','—','—','—','—','—'],h:'0.00'}
+  ]},
+  {id:'s47',label:'S47',dates:'16–22 Novembre 2026',bastille:[
+    {jour:'Lun 16',matin:'LUM TURA',am:'GENP TURA',soir:'LUM TURA'},
+    {jour:'Mar 17',matin:'LUM TURA',am:'MISE WALK',soir:'R2 WALK'},
+    {jour:'Mer 18',matin:'MISE TURA',am:'LUM TURA',soir:'LUM TURA'},
+    {jour:'Jeu 19',matin:'ITAC TURA',am:'MISE SIEG',soir:'R2 SIEG'},
+    {jour:'Ven 20',matin:'MISE TURA',am:'SOC TURA',soir:'SOC TURA'},
+    {jour:'Sam 21',matin:'TEC MIXT',am:'TEC MIXT',soir:'FIL MIXT'},
+    {jour:'Dim 22',matin:'MISE CREP',am:'R2 CREP',soir:'DEBL CREP'}
+  ],gounod:[
+    {matin:'MISE MIXT',am:'MISE MIXT',soir:'—'},
+    {matin:'MISE MIXT',am:'MISE MIXT',soir:'—'},
+    {matin:'MISE MIXT',am:'MISE MIXT',soir:'—'},
+    {matin:'MISE MIXT',am:'MISE MIXT',soir:'—'},
+    {matin:'MISE MIXT',am:'MISE MIXT',soir:'—'},
+    EMPTY_GOUNOD(),
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['816 / M','RH / M','R / M','R / S','R / S','RH / S','R / S'],h:'7.00'},
+    {nom:'WEBER Adrien',jours:['1019 / S','RH / S','RH / S','1524 / S','1524 / S','1524 / S','1019 / S'],h:'40.00'},
+    {nom:'BARRAGAN Maurane',jours:['R / M','816 / M','816 / M','816 / M','816 / M','RH / RH','RH / RH'],h:'28.00'},
+    {nom:'GOUIN Pierre',jours:['1019 CP / S','1524 CP / S','R / S','R / S','R / M','RH / M','RH / M'],h:'0.00'},
+    {nom:'REITH Wilfrid',jours:['816 / M','816 / M','816 / M','816 / M','816 / M','RH / M','RH / M'],h:'35.00'},
+    {nom:'RINTO Romain',jours:['1019 / S','1524 / S','RH / S','1524 / S','1524 / S','RH / S','1019 / S'],h:'40.00'},
+    {nom:'DOMENICI Alessandra',jours:['—','1524 CP','—','—','—','—','—'],h:'8.00'},
+    {nom:'NESI Valentina',jours:['—','—','—','—','—','1524 Mixte','—'],h:'8.00'}
+  ]},
+  {id:'s48',label:'S48',dates:'23–29 Novembre 2026',bastille:[
+    {jour:'Lun 23',matin:'LUM MIXT',am:'SP MIXT',soir:'LUM MIXT'},
+    {jour:'Mar 24',matin:'MISE TURA',am:'LUM TURA',soir:'GEN TURA'},
+    {jour:'Mer 25',matin:'MISE MIXT',am:'SP MIXT',soir:'LUM MIXT'},
+    {jour:'Jeu 26',matin:'LUM MIXT',am:'SO MIXT',soir:'SO MIXT'},
+    {jour:'Ven 27',matin:'MISE TURA',am:'LUM TURA',soir:'R1 TURA'},
+    {jour:'Sam 28',matin:'MISE MIXT',am:'SP MIXT',soir:'PGEN MIXT'},
+    {jour:'Dim 29',matin:'LUM MIXT',am:'LUM MIXT',soir:'LUM MIXT'}
+  ],gounod:[
+    EMPTY_GOUNOD(),
+    {matin:'—',am:'RACC',soir:'—'},
+    EMPTY_GOUNOD(),
+    EMPTY_GOUNOD(),
+    {matin:'—',am:'RACC',soir:'—'},
+    EMPTY_GOUNOD(),
+    EMPTY_GOUNOD()
+  ],dispositif:[
+    {nom:'MANSIOT Denis',jours:['JT','JT','JT','JT bisou','JT','RH','RH'],h:'0.00'},
+    {nom:'FOUGERAY Franck',jours:['1019 / S','1524 / S','RH / S','1524 / S','RH / S','1524 / S','1019 / S'],h:'40.00'},
+    {nom:'WEBER Adrien',jours:['RH / M','816 / M','816 / M','816 / M','816 / M','816 / M','RH / M'],h:'36.00'},
+    {nom:'BARRAGAN Maurane',jours:['1019 / S','RH / S','1324 / S','1524 / S','1524 / S','1524 / S','RH / S'],h:'42.00'},
+    {nom:'GOUIN Pierre',jours:['816 / M','816 / M','816 / M','816 / M','R / M','RH / RH','RH / RH'],h:'29.00'},
+    {nom:'REITH Wilfrid',jours:['816 / M','RH / M','R / M','1524 / S','1524 / S','1524 / S','RH / S'],h:'31.00'},
+    {nom:'RINTO Romain',jours:['1019 / S','1524 / S','1324 / S','RH / S','816 / M','816 / M','RH / M'],h:'40.00'},
+    {nom:'CRISTOFARI Valentina',jours:['—','—','1324 Mixte','1019 Mixte','—','—','—'],h:'19.00'},
+    {nom:'NESI Valentina',jours:['1019 Mixte','—','1324 Mixte','1524 Mixte','—','1524 Mixte','1019 Mixte'],h:'42.00'},
+    {nom:'SCÉNIQUE 2',jours:['—','—','—','—','—','—','—'],h:'0.00'},
+    {nom:'SCÉNIQUE 1',jours:['—','—','—','—','—','—','—'],h:'0.00'}
   ]}
 ];
 
